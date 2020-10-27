@@ -19,10 +19,12 @@
         <div class="dropdown" style="float:right;">
             <button class="dropbtn"><i class="fas fa-bars"></i></button>
             <div class="dropdown-content">
-                <a href="principal"><i class="fas fa-home">Inicio</i></a>
-                <a href="historial"><i class="fas fa-history">Registros</i></a>
+                <a href="principal"><i class="fas fa-home"></i>Inicio</a>
+                <a href="perfil"><i class="fas fa-user-circle"></i>Perfil</a>
+                <a href="historial"><i class="fas fa-history"></i>Registros</a>
+                <a href="sensores"><i class="fas fa-cogs"></i>Sensores</a>
                 <a onclick="document.getElementById('close').style.display='block'"
-                    style="width:auto; cursor:pointer;"><i class="fas fa-sign-out-alt">Cerrar Sesión</i></a>
+                    style="width:auto; cursor:pointer;"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a>
                 <div id="close" class="modal" style="text-align: center;">
                     <form class="modal-content animate" method="post" style="width: 30%;">
                         <div class="container" style="color: black;">
@@ -39,7 +41,7 @@
         </div>
     </header>
 
-    <section id="main-content" style="margin-top: 4%;">
+    <section id="main-content" style="margin-top: 5%;">
             <div class="container">
                 <h1>Registros</h1>
                 <div class="table-responsive" id="divdtTemHum">
@@ -64,7 +66,7 @@
     </section> <!-- / #main-content -->
 
     <footer id="main-footer" style="position: fixed; bottom:0%; right:0%; left:0%">
-        <p><i class="fas fa-code">Fábrica de Software</i></p>
+        <p><i class="fas fa-code"></i>Fábrica de Software</p>
     </footer> <!-- / #main-footer -->
     <script>
         // Get the modal
@@ -78,7 +80,7 @@
     </script>
     <script src="static/Scripts/jquery-3.3.1.js"></script>
     <script src="static/Scripts/cargarTemp.js"></script>
-    <script src="static/DataTables/datatables.min.js"></script>
+    <script src="static/PlantillasDB/datatables.min.js"></script>
     <script>
         /****************************************
          *       Basic Table                   *

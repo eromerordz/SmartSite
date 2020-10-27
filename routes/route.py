@@ -11,10 +11,6 @@ def index():
         y.append(algo)
     return jsonify(y)
 
-@app.route('/')
-def h():
-    return render_template('home.html')
-
 @app.route('/home')
 def home():
     return render_template('home.html')
@@ -30,3 +26,15 @@ def principal():
 @app.route('/recuperarpsw')
 def recuperarpsw():
     return render_template('recuperarpsw.html')
+    
+@app.route('/recuperarpswH')
+def recuperarpswH():
+    return render_template('recuperarpswH.html')
+
+@app.route('/sensores')
+def sensores():
+    return render_template('sensores.html')
+
+@app.route('/perfil')
+def perfil():
+    return render_template('perfil.html')

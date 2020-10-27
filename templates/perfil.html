@@ -43,33 +43,21 @@
         </div>
     </header>
 
-    <section id="main-content" style="margin-top: 150px;">
-            <div class="container">
-                <h1>Temperatura Actual</h1>
-                <!-- <div class="imgcontainerH"> -->
-                    <!-- <img src="src/temperatura.jpg" alt="temp" style="max-width: 50%;"> -->
-                    <!-- class="animated infinite zoomIn delay-1s" -->
-                <!-- </div> -->
-                <div class="content">
-                    <div class="table-responsive" id="divdtTemHum">
-                        <table class="myTableActual" id="dtTemperaturas">
-                            <thead> 
-                                <th>Temperatura Cº</th>
-                                <th>Humedad %</th>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                            <!-- <tfoot> 
-                                <tr>
-                                    <th>Temperatura</th>
-                                    <th>Humedad</th>
-                                  </tr>
-                            </tfoot> -->
-                        </table>
-                    </div>
-                    <span class="psw"><a style="color: green;" href="historial">Ver registro de datos</a></span>
+    <section id="main-content" style="margin-top: 5%; width:65%">
+        <div class="container">
+            <h1>Perfil</h1>
+                <table class="myTableP">
+                            <td><img src="static/src/oso.png"  style="width: 40%; float:right"></td>
+                            <td>
+                                <h2 style="display: inline-block; width:70px;">Usuario</h2>
+                                <input type="profile" value="Tester" id="user" disabled><br>
+                                <h2 style="display: inline-block; width:70px;">Correo</h2>
+                                <input type="profile" value="fsw@fime.uanl.mx" id="email" disabled> 
+                            </td>
+                </table>
+                <button class="editbtn" onclick="Edit()">Editar</button>
+                <button class="savebtn" onclick="Save()">Actualizar</button>                               
                 </div>
-            </div>
     </section> <!-- / #main-content -->
 
     <footer id="main-footer" style="position: fixed; bottom:0%; right:0%; left:0%">
@@ -84,15 +72,28 @@
                 modal.style.display = "none";
             }
         }
+
     </script>
     <script src="static/Scripts/jquery-3.3.1.js"></script>
     <script src="static/Scripts/cargarActual.js"></script>
-    <script src="static/PlantillasDB/datatables.min.js"></script>
+    <script src="PlantillasDB/datatables.min.js"></script>
     <script>
         /****************************************
          *       Basic Table                   *
          ****************************************/
         $('#dtTemperaturas').DataTable();
+    </script>
+    <script>
+        function Edit() {
+            document.getElementById("user").disabled=false;
+            document.getElementById("user").focus();
+            document.getElementById("email").disabled=false;
+        }
+
+        function Save() {
+            document.getElementById("user").disabled=true;
+            document.getElementById("email").disabled=true;
+        }
     </script>
 </body>
 

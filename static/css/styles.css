@@ -1,7 +1,7 @@
 body {
 	margin: 0;
 	padding: 0;
-	font-family: Helvetica, Arial, sans-serif;
+	font-family: 'Roboto', sans-serif;
 	color: black;
 	background: #f2f2f2; 
 	font-size: 1em;
@@ -10,15 +10,33 @@ body {
 }
 
 h1 {
-	font-size: 2.3em;
-	line-height: 1.3em;
+	font-size: 4.0em;
+	line-height: 1.5em;
 	margin: 15px 0;
 	text-align: center;
-	font-weight: 300;
+	font-weight: medium;
+	font-family: 'Source Code Pro', monospace;;
+}
+
+h2 {
+	font-size: 1.0em;
+	line-height: 0.5em;
+	margin: 10px 0;
+	text-align: left;
+	font-weight: medium;
+	font-family: 'Source Code Pro', monospace;;
 }
 
 p {
 	margin: 0 0 1.5em 0;
+}
+
+i {
+	padding-right: 5px;
+}
+
+.fa-bars{
+	padding-right: 0px;
 }
 
 img {
@@ -122,7 +140,24 @@ input[type=text], input[type=password] {
 	border: 1px solid #ccc;
 	box-sizing: border-box;
   }
+
+input[type=add], input[type=number]{
+	width: 70%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+}
   
+input[type=profile]{
+	width: 60%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+}
   /* Set a style for all buttons */
   .buttonRecuperar{
 	background-color: #4CAF50;
@@ -160,6 +195,32 @@ input[type=text], input[type=password] {
 	cursor: pointer;
   }
 
+   .editbtn {
+	width: 15%;
+	padding: 10px 18px;
+	background-color: gray;
+	font-size: 15px;
+	border-radius: 10px;
+	cursor: pointer;
+	margin-right: auto;
+	margin-left: 35%;
+	display: inline-block;
+	margin-top: 5%;
+  }
+
+  .savebtn {
+	width: 15%;
+	padding: 10px 18px;
+	background-color: green;
+	font-size: 15px;
+	border-radius: 10px;
+	cursor: pointer;
+	margin-right: auto;
+	margin-left: auto;
+	display: inline-block;
+	margin-top: 5%;
+  }
+
   .okbtn {
 	width: 20%;
 	padding: 10px 18px;
@@ -169,14 +230,42 @@ input[type=text], input[type=password] {
 	cursor: pointer;
   }
   .okbtnH {
-	width: 50%;
+	width: 40%;
 	padding: 10px 18px;
 	background-color: green;
 	font-size: 15px;
 	border-radius: 10px;
 	cursor: pointer;
-	margin-left: 50%;
-}
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+  }
+
+  .addbtn {
+	width: 20%;
+	padding: 10px 18px;
+	background-color: green;
+	font-size: 15px;
+	border-radius: 10px;
+	cursor: pointer;
+	display: block;
+	margin-top: 35%;
+	margin-left: auto;
+	margin-right: auto;
+  }
+
+  .updatebtn {
+	width: 20%;
+	padding: 10px 18px;
+	background-color: green;
+	font-size: 15px;
+	border-radius: 10px;
+	cursor: pointer;
+	display: block;
+	margin-top: 5%;
+	margin-left: auto;
+	margin-right: auto;
+  }
 
   /* Center the image and position the close button */
   .imgcontainer {
@@ -221,7 +310,7 @@ input[type=text], input[type=password] {
 	background-color: #fefefe;
 	margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
 	border: 1px solid #888;
-	width: 35%; /* Could be more or less, depending on screen size */
+	width: 40%; /* Could be more or less, depending on screen size */
   }
   
   /* The Close Button (x) */
@@ -332,6 +421,7 @@ th,tfoot{
 	text-align: center;
 	background-color: green;
 	color: white;
+	width: 100px;
 }
 td {
 	border: 1px solid #dddddd;
@@ -351,4 +441,24 @@ td {
 	font-weight: 200;
 	line-height: 1.0em;
 	font-size: .5em;
+	width: 100px;
+}
+
+.myTableS{
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.myTableS th{
+	width: 100px;
+}
+
+.myTableP{
+	width: 100%;
+}
+
+.myTableP td{
+	border: none;
+	width: 100px;
+	text-align: left;
 }

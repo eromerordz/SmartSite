@@ -43,31 +43,48 @@
         </div>
     </header>
 
-    <section id="main-content" style="margin-top: 150px;">
+    <section id="main-content" style="margin-top: 5%;">
             <div class="container">
-                <h1>Temperatura Actual</h1>
+                <h1>Sensores</h1>
                 <!-- <div class="imgcontainerH"> -->
                     <!-- <img src="src/temperatura.jpg" alt="temp" style="max-width: 50%;"> -->
                     <!-- class="animated infinite zoomIn delay-1s" -->
                 <!-- </div> -->
-                <div class="content">
-                    <div class="table-responsive" id="divdtTemHum">
-                        <table class="myTableActual" id="dtTemperaturas">
-                            <thead> 
-                                <th>Temperatura Cº</th>
-                                <th>Humedad %</th>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                            <!-- <tfoot> 
-                                <tr>
-                                    <th>Temperatura</th>
-                                    <th>Humedad</th>
-                                  </tr>
-                            </tfoot> -->
-                        </table>
-                    </div>
-                    <span class="psw"><a style="color: green;" href="historial">Ver registro de datos</a></span>
+                <table class="myTableS">
+                    <thead>
+                        <tr>
+                            <th>Imagen</th>
+                            <th>Nombre</th>
+                            <th># Pin</th>
+                            <th>Tipo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="button" onclick="document.getElementById('agregar').style.display='block'" class="addbtn">Agregar</button>
+                <div id="agregar" class="modal">
+                    <form class="modal-content animate" method="post" style="width: 35%; margin-top:10%">
+                        <h3 style="text-align: center;">Agregar Sensor</h3>
+                        <div class="container" style="color: black;">    
+                            <label for="name" style="display: inline-block; width:100px; padding-left:2%"><b>Nombre</b></label>
+                            <input type="add" placeholder="Nombre del sensor" name="name" required><br>
+                            <label for="pin" style="display: inline-block; width:100px; padding-left:2%"><b>No. Pin</b></label>
+                            <input type="number" placeholder="# Pin" name="pin" required><br>
+                            <label for="tipo" style="display: inline-block; width:100px; padding-left:2%"><b>Tipo de Pin</b></label>
+                            <input type="add" placeholder="Interno o Externo" name="name" required>
+                        </div>
+                        <div class="container" style="background-color:#f1f1f1">                        
+                            <button type="button" class="addbtn" style="margin-top: 0%; width:auto">Confirmar</button>
+                         <!--   <button type="button" onclick="document.getElementById('agregar').style.display='none'" class="addbtn" style="margin-top: 0%; background-color:red;">Cancelar</button> -->
+                        </div>
+                    </form>
                 </div>
             </div>
     </section> <!-- / #main-content -->
@@ -77,7 +94,7 @@
     </footer> <!-- / #main-footer -->
     <script>
         // Get the modal
-        var modal = document.getElementById('close');
+        var modal = document.getElementById('agregar');
         // When the user clicks anywhere outside of the modal, close it
         window.onclick = function (event) {
             if (event.target == modal) {
