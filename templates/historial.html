@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <script src="https://kit.fontawesome.com/b70cada82c.js" crossorigin="anonymous"></script>
+    <title>Inicio</title>
+</head>
+
+<body>
+
+    <header id="main-header">
+        <a id="logo-header" href="home">
+            <span class="site-name">SmartSite</span>
+            <span class="site-desc">FSW</span>
+        </a>
+        <div class="dropdown" style="float:right;">
+            <button class="dropbtn"><i class="fas fa-bars"></i></button>
+            <div class="dropdown-content">
+                <a href="principal"><i class="fas fa-home">Inicio</i></a>
+                <a href="historial"><i class="fas fa-history">Registros</i></a>
+                <a onclick="document.getElementById('close').style.display='block'"
+                    style="width:auto; cursor:pointer;"><i class="fas fa-sign-out-alt">Cerrar Sesión</i></a>
+                <div id="close" class="modal" style="text-align: center;">
+                    <form class="modal-content animate" method="post" style="width: 30%;">
+                        <div class="container" style="color: black;">
+                            <h3>¿Cerrar Sesión?</h3>
+                        </div>
+                        <div class="container" style="background-color:#f1f1f1">
+                            <button type="button" onclick="location.href='home'" class="okbtn">SI</button>
+                            <button type="button" onclick="document.getElementById('close').style.display='none'"
+                                class="cancelbtn">NO</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="main-content" style="margin-top: 4%;">
+            <div class="container">
+                <h1>Registros</h1>
+                <div class="table-responsive" id="divdtTemHum">
+                    <table class="myTable" id="dtTemperaturas">
+                        <thead>
+                            <tr>
+                                <th>Temperatura Cº</th>
+                                <th>Humedad %</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                        <!-- <tfoot> 
+                            <tr>
+                                <th>Temperatura</th>
+                                <th>Humedad</th>
+                              </tr>
+                        </tfoot> -->
+                    </table>
+                </div>
+            </div>
+    </section> <!-- / #main-content -->
+
+    <footer id="main-footer" style="position: fixed; bottom:0%; right:0%; left:0%">
+        <p><i class="fas fa-code">Fábrica de Software</i></p>
+    </footer> <!-- / #main-footer -->
+    <script>
+        // Get the modal
+        var modal = document.getElementById('close');
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        } 
+    </script>
+    <script src="static/Scripts/jquery-3.3.1.js"></script>
+    <script src="static/Scripts/cargarTemp.js"></script>
+    <script src="static/DataTables/datatables.min.js"></script>
+    <script>
+        /****************************************
+         *       Basic Table                   *
+         ****************************************/
+        $('#dtTemperaturas').DataTable();
+    </script>
+</body>
+
+</html>
