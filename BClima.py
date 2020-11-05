@@ -18,8 +18,8 @@ app = Flask(__name__)
 CORS(app)
 mydb = {
     "host":"localhost",
-    "user":"rasp",
-    "password":"cactus",
+    "user":"root",
+    "password":"leonnegro10",
     "database":"rasp_web",
     "auth_plugin":'mysql_native_password'
 }
