@@ -11,11 +11,11 @@
 
 <body>
 
-	<header id="main-header">
+	<header id="hdr">
 		<a id="logo-header" href="home">
 			<span class="site-name">SmartSite</span>
 			<span class="site-desc">FSW</span>
-		</a> <!-- / #logo-header -->
+		</a>
 		<nav>
 			<ul>
 				<button onclick="document.getElementById('login').style.display='block'" style="width:auto;float:right"
@@ -35,10 +35,7 @@
 							<label for="psw"><b><i class="fas fa-key"></i>Contraseña</b></label>
 							<input type="password" placeholder="Ingresar Contraseña" name="psw" required>
 
-							<button type="submit" onclick="location.href='principal'" class="okbtnH">Entrar</button>
-							<!-- <label> -->
-								<!-- <input type="checkbox" checked="checked" name="remember"> Recordarme -->
-							<!-- </label> -->
+							<button type="submit" onclick="location.href='principal'" class="okbtnH">Entrar</button>						
 						</div>
 
 						<div class="container" style="background-color:#f1f1f1">
@@ -51,17 +48,14 @@
 				</div>
 			</ul>
 		</nav>
+	</header>
 
-	</header><!-- / #main-header -->
-
-	<section id="main-content">
-		<div class="container">
+	<section id="bdy">
 				<header>
 					<h1>Bienvenido a SmartSite</h1>
 				</header>
 				<div class="imgcontainerH">
 					<img src="static/src/fsw.png" alt="fswlogo" style="max-width: 80%;">
-					<!-- class="animated infinite zoomIn delay-1s" -->
 				</div>
 
 				<div class="content">
@@ -86,27 +80,19 @@
 						atque, aliquam exercitationem, voluptas voluptatem earum culpa consequuntur provident vitae eum obcaecati nisi
 						blanditiis quidem sapiente laudantium amet cupiditate. Culpa voluptatibus quae incidunt?</p>
 				</div>
-		</div>
-	</section> <!-- / #main-content -->
+	</section>
 
-	<footer id="main-footer">
+	<footer id="ftr">
 		<p><i class="fas fa-code"></i>Fábrica de Software</p>
-	</footer> <!-- / #main-footer -->
+	</footer>
 
 	<script>
-
-		// Get the modal
 		var modal = document.getElementById('login');
-
-		// When the user clicks anywhere outside of the modal, close it
 		window.onclick = function (event) {
 			if (event.target == modal) {
 				modal.style.display = "none";
 			}
 		}
-
 	</script>
-
 </body>
-
 </html>

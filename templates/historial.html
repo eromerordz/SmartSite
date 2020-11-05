@@ -11,7 +11,7 @@
 
 <body>
 
-    <header id="main-header">
+    <header id="hdr">
         <a id="logo-header" href="home">
             <span class="site-name">SmartSite</span>
             <span class="site-desc">FSW</span>
@@ -41,37 +41,28 @@
         </div>
     </header>
 
-    <section id="main-content" style="margin-top: 5%;">
-            <div class="container">
-                <h1>Registros</h1>
-                <div class="table-responsive" id="divdtTemHum">
-                    <table class="myTable" id="dtTemperaturas">
-                        <thead>
-                            <tr>
-                                <th>Temperatura Cº</th>
-                                <th>Humedad %</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                        <!-- <tfoot> 
-                            <tr>
-                                <th>Temperatura</th>
-                                <th>Humedad</th>
-                              </tr>
-                        </tfoot> -->
-                    </table>
-                </div>
-            </div>
-    </section> <!-- / #main-content -->
+    <section id="bdy">
+        <h1>Registros</h1>
+        <div class="table-responsive" id="divdtTemHum">
+            <table class="myTable" id="dtTemperaturas">
+                <thead>
+                    <tr>
+                        <th>Temperatura Cº</th>
+                        <th>Humedad %</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </section>
 
-    <footer id="main-footer" style="position: fixed; bottom:0%; right:0%; left:0%">
+    <footer id="ftr">
         <p><i class="fas fa-code"></i>Fábrica de Software</p>
-    </footer> <!-- / #main-footer -->
+    </footer>
+
     <script>
-        // Get the modal
         var modal = document.getElementById('close');
-        // When the user clicks anywhere outside of the modal, close it
         window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = "none";
@@ -82,9 +73,6 @@
     <script src="static/Scripts/cargarTemp.js"></script>
     <script src="static/PlantillasDB/datatables.min.js"></script>
     <script>
-        /****************************************
-         *       Basic Table                   *
-         ****************************************/
         $('#dtTemperaturas').DataTable();
     </script>
 </body>

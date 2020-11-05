@@ -11,7 +11,7 @@
 
 <body>
 
-    <header id="main-header">
+    <header id="hdr">
         <a id="logo-header" href="home">
             <span class="site-name">SmartSite</span>
             <span class="site-desc">FSW</span>
@@ -43,13 +43,8 @@
         </div>
     </header>
 
-    <section id="main-content" style="margin-top: 5%;">
-            <div class="container">
+    <section id="bdy">
                 <h1>Sensores</h1>
-                <!-- <div class="imgcontainerH"> -->
-                    <!-- <img src="src/temperatura.jpg" alt="temp" style="max-width: 50%;"> -->
-                    <!-- class="animated infinite zoomIn delay-1s" -->
-                <!-- </div> -->
                 <table class="myTableS">
                     <thead>
                         <tr>
@@ -71,6 +66,7 @@
                 <button type="button" onclick="document.getElementById('agregar').style.display='block'" class="addbtn">Agregar</button>
                 <div id="agregar" class="modal">
                     <form class="modal-content animate" method="post" style="width: 35%; margin-top:10%">
+                        <span onclick="document.getElementById('agregar').style.display='none'" class="clo">&times;</span>
                         <h3 style="text-align: center;">Agregar Sensor</h3>
                         <div class="container" style="color: black;">    
                             <label for="name" style="display: inline-block; width:100px; padding-left:2%"><b>Nombre</b></label>
@@ -81,21 +77,17 @@
                             <input type="add" placeholder="Interno o Externo" name="name" required>
                         </div>
                         <div class="container" style="background-color:#f1f1f1">                        
-                            <button type="button" class="addbtn" style="margin-top: 0%; width:auto">Confirmar</button>
-                         <!--   <button type="button" onclick="document.getElementById('agregar').style.display='none'" class="addbtn" style="margin-top: 0%; background-color:red;">Cancelar</button> -->
+                            <button type="button" class="addbtn" onclick="location.href='sensores'" style="margin-top: 0%; width:auto">Confirmar</button>
                         </div>
                     </form>
                 </div>
-            </div>
-    </section> <!-- / #main-content -->
+    </section>
 
-    <footer id="main-footer" style="position: fixed; bottom:0%; right:0%; left:0%">
+    <footer id="ftr">
         <p><i class="fas fa-code"></i>Fábrica de Software</p>
-    </footer> <!-- / #main-footer -->
+    </footer>
     <script>
-        // Get the modal
-        var modal = document.getElementById('agregar');
-        // When the user clicks anywhere outside of the modal, close it
+        var modal = document.getElementById('close');
         window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = "none";
@@ -106,9 +98,6 @@
     <script src="static/Scripts/cargarActual.js"></script>
     <script src="static/PlantillasDB/datatables.min.js"></script>
     <script>
-        /****************************************
-         *       Basic Table                   *
-         ****************************************/
         $('#dtTemperaturas').DataTable();
     </script>
 </body>
