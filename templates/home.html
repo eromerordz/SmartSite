@@ -21,7 +21,7 @@
 				<button onclick="document.getElementById('login').style.display='block'" style="width:auto;float:right"
 					class="homebtn"><i class="fas fa-sign-in-alt"></i>Iniciar Sesión</button>
 				<div id="login" class="modal">
-					<form class="modal-content animate" method="post">
+					<form class="modal-content animate" method="post" action="/entrar">
 						<div class="imgcontainer">
 							<span onclick="document.getElementById('login').style.display='none'" class="close"
 								title="Close Modal">&times;</span>
@@ -29,11 +29,12 @@
 						</div>
 
 						<div class="container" style="color: black;">
-							<label for="uname"><b><i class="fas fa-user"></i>Usuario</b></label>
-							<input type="text" placeholder="Ingresar Usuario" name="uname" required>
-
+							<!-- <label for="uname"><b><i class="fas fa-user"></i>Usuario</b></label> -->
+							<!-- <input type="text" placeholder="Ingresar Usuario" name="uname" required> -->
+							<label for="uname"><b><i class="fas fa-at"></i>Correo</b></label>
+							<input type="text" placeholder="Ingresar Correo" name="nmCorreo" required>
 							<label for="psw"><b><i class="fas fa-key"></i>Contraseña</b></label>
-							<input type="password" placeholder="Ingresar Contraseña" name="psw" required>
+							<input type="password" placeholder="Ingresar Contraseña" name="nmPassword" required>
 
 							<button type="submit" onclick="location.href='principal'" class="okbtnH">Entrar</button>						
 						</div>
@@ -48,6 +49,15 @@
 				</div>
 			</ul>
 		</nav>
+	{%with messages = get_flashed_messages(with_categories=true)%}
+    	{%if messages %}
+            {%for category, message in messages%}
+                <div class="alert {{category}}" id="idMensajeError">
+                    {{message}}
+                </div>
+            {%endfor%}
+        {%endif%}
+    {%endwith%}
 	</header>
 
 	<section id="bdy">

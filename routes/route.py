@@ -11,17 +11,17 @@ def index():
         y.append(algo)
     return jsonify(y)
 
-@app.route('/')
-def home():
-    return render_template('home.html')
+# @app.route('/')
+# def home():
+#     return render_template('home.html')
 
 @app.route('/historial')
 def historial():
     return render_template('historial.html')
 
-@app.route('/principal')
-def principal():
-    return render_template('principal.html')
+# @app.route('/principal')
+# def principal():
+#     return render_template('principal.html')
 
 @app.route('/recuperarpsw')
 def recuperarpsw():

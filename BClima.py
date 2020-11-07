@@ -37,6 +37,7 @@ app.json_encoder = MyJSONEncoder
 from routes.route import *
 from routes.login import *
 from routes.sensor import *
+from routes.entrar import *
 
 
 if __name__=="__main__":
