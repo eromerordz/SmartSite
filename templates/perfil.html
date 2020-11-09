@@ -14,7 +14,7 @@
     <header id="hdr">
         <a id="logo-header" href="/">
             <span class="site-name">SmartSite</span>
-            <span class="site-desc">FSW</span>
+            <span class="site-desc">{{session['nombre']}}</span>
         </a>
         <div class="dropdown" style="float:right;">
             <button class="dropbtn"><i class="fas fa-bars"></i></button>
@@ -32,7 +32,7 @@
                             <h3>¿Cerrar Sesión?</h3>
                         </div>
                         <div class="container" style="background-color:#f1f1f1">
-                            <button type="button" onclick="location.href='/'" class="okbtn">SI</button>
+                            <button type="button" onclick="location.href='/salir'" class="okbtn">SI</button>
                             <button type="button" onclick="document.getElementById('close').style.display='none'"
                                 class="cancelbtn">NO</button>
                         </div>
@@ -47,10 +47,12 @@
                 <table class="myTableP">
                             <td><img src="static/src/oso.png"  style="width: 40%; float:right"></td>
                             <td>
-                                <h2 style="display: inline-block; width:70px;">Usuario</h2>
-                                <input type="profile" value="Tester" id="user" disabled><br>
-                                <h2 style="display: inline-block; width:70px;">Correo</h2>
-                                <input type="profile" value="fsw@fime.uanl.mx" id="email" disabled> 
+                                <h2 style="display: inline-block; width:100px; text-align:center">Usuario</h2>
+                                <input type="profile" value="{{session['nombre']}}" id="user" disabled><br>
+                                <h2 style="display: inline-block; width:100px; text-align:center">Correo</h2>
+                                <input type="profile" value="{{session['correo']}}" id="email" disabled><br>
+                                <h2 style="display: inline-block; width:100px; text-align:center">Contraseña</h2>
+                                <input type="password" style="width: 60%;" value="{{session['pasw']}}" id="pasw" disabled> 
                             </td>
                 </table>
                 <button class="editbtn" onclick="Edit()">Editar</button>
@@ -80,11 +82,13 @@
             document.getElementById("user").disabled=false;
             document.getElementById("user").focus();
             document.getElementById("email").disabled=false;
+            document.getElementById("pasw").disabled=false;
         }
 
         function Save() {
             document.getElementById("user").disabled=true;
             document.getElementById("email").disabled=true;
+            document.getElementById("pasw").disabled=true;
         }
     </script>
 </body>

@@ -37,6 +37,42 @@ def principal():
     else:
         return render_template('home.html')
 
+@app.route('/historial')
+def historial():
+    if 'nombre' in session:
+        return render_template('historial.html')
+    else:
+        return render_template('home.html')
+
+@app.route('/sensores')
+def sensores():
+    if 'nombre' in session:
+        return render_template('sensores.html')
+    else:
+        return render_template('home.html')
+
+@app.route('/perfil')
+def perfil():
+    if 'nombre' in session:
+        return render_template('perfil.html')
+    else:
+        return render_template('home.html')
+
+@app.route('/recuperarpsw')
+def recuperarpsw():
+    if 'nombre' in session:
+        return salir()
+    else:
+        return render_template('recuperarpsw.html')
+    
+@app.route('/recuperarpswH')
+def recuperarpswH():
+    if 'nombre' in session:
+        return salir()
+    else:
+        return render_template('recuperarpswH.html')
+
+
 @app.route('/entrar',methods=['GET','POST'])
 def entrar():
     if (request.method=='GET'):
@@ -51,13 +87,12 @@ def entrar():
         cursor = mysql.get_db().cursor()
         # cur = mysql.connection.cursor()
 
-        # sQuery = "SELECT correo, password, nombre FROM Login WHERE correo = %s"
+        # sQuery = "SELECT Users_Name, Users_Correo, password_b FROM users WHERE Users_Correo = %s AND password_b = %s"
+        # sQuery1 = "SELECT Users_Name, Users_Correo, password_b FROM users WHERE password_b = %s"
+        # cursor.execute(sQuery,[correo,passwordB])
 
-        sQuery = "SELECT Users_Name, Users_Correo, password_b FROM users WHERE Users_Correo = %s"
-        sQuery1 = "SELECT Users_Name, Users_Correo, password_b FROM users WHERE password_b = %s"
-
-        cursor.execute(sQuery,[correo])
-        cursor.execute(sQuery1,[passwordB])
+        cursor.execute("SELECT * FROM users WHERE Users_Correo = %s AND password_b = %s",(correo,passwordB))
+        # cursor.execute(sQuery1,[passwordB])
 
         usuario = cursor.fetchone()
 
@@ -66,14 +101,16 @@ def entrar():
         if (usuario != None):
             # password_encriptado_encode = usuario[2].encode()
             # if (bcrypt.checkpw(password_encode,password_encriptado_encode)):
-            if (passwordB != None):
-                session['nombre']= usuario[0]
-                return redirect(url_for('principal'))
-            else:
-                flash("La contraseña no es correcta","alert-warning")
-                return render_template('home.html')
+            # fsw = passwordB
+            # if (passwordB == fsw):
+            session['id']= usuario[0]
+            session['nombre']= usuario[1]
+            session['correo']= usuario[2]
+            session['pasw']= usuario[3]
+            return redirect(url_for('principal'))
+            # else:
+                # return render_template('home.html')
         else:
-            flash("El correo no existe","alert-warning")
             return render_template('home.html')
 
 @app.route("/salir")
