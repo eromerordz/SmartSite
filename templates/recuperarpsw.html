@@ -23,9 +23,11 @@
         <form>
           <div class="container" style="color: black;">
             <label for="psw"><b><i class="fas fa-key"></i>Nueva Contraseña</b></label>
-            <input type="password" placeholder="Ingresar Contraseña" name="psw" required>
+            <input type="password" placeholder="Ingresar Contraseña" name="psw"  style="width: 95%;" id="pasw" required>
+            <span class="fa fa-eye-slash icon" onclick="mostrarContrasena()"></span>
             <label for="psw"><b><i class="fas fa-key"></i>Confirmar Contraseña</b></label>
-            <input type="password" placeholder="Ingresar Contraseña" name="psw" required>
+            <input type="password" placeholder="Ingresar Contraseña" name="psw" style="width: 95%;" id="passw" required>
+            <span class="fa fa-eye-slash icon" onclick="mostrarContrasena2()"></span>
             <div style="text-align: center;">
               <button type="submit" class="buttonRecuperar" onclick="location.href='/'">Recuperar</button>
             </div>
@@ -37,6 +39,25 @@
     <p><i class="fas fa-code"></i>Fábrica de Software</p>
   </footer>
 
+  <script>
+    function mostrarContrasena(){
+        var tipo = document.getElementById("pasw");
+        if(tipo.type == "password"){
+            tipo.type = "text";
+        }else{
+            tipo.type = "password";
+        }
+    }
+    function mostrarContrasena2(){
+      var tipo = document.getElementById("passw");
+      if(tipo.type == "password"){
+          tipo.type = "text";
+      }else{
+          tipo.type = "password";
+      }
+  }
+  </script> 
+  
 </body>
 
 </html>

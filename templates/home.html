@@ -34,8 +34,8 @@
 							<label for="uname"><b><i class="fas fa-at"></i>Correo</b></label>
 							<input type="text" placeholder="Ingresar Correo" name="nmCorreo" required>
 							<label for="psw"><b><i class="fas fa-key"></i>Contraseña</b></label>
-							<input type="password" placeholder="Ingresar Contraseña" name="nmPassword" required>
-
+							<input type="password" placeholder="Ingresar Contraseña" name="nmPassword" style="width: 95%;" id="pasw" required>
+							<span class="fa fa-eye-slash icon" onclick="mostrarContrasena()"></span>
 							<button type="submit" onclick="location.href='principal'" class="okbtnH">Entrar</button>						
 						</div>
 
@@ -95,5 +95,15 @@
 			}
 		}
 	</script>
+	<script>
+        function mostrarContrasena(){
+            var tipo = document.getElementById("pasw");
+            if(tipo.type == "password"){
+                tipo.type = "text";
+            }else{
+                tipo.type = "password";
+            }
+        }
+      </script>
 </body>
 </html>

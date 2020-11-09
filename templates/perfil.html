@@ -52,11 +52,14 @@
                                 <h2 style="display: inline-block; width:100px; text-align:center">Correo</h2>
                                 <input type="profile" value="{{session['correo']}}" id="email" disabled><br>
                                 <h2 style="display: inline-block; width:100px; text-align:center">Contraseña</h2>
-                                <input type="password" style="width: 60%;" value="{{session['pasw']}}" id="pasw" disabled> 
+                                <input type="password" style="width: 60%;" value="{{session['pasw']}}" id="pasw" disabled>
+                                <button class="fa fa-eye-slash icon" onclick="mostrarContrasena()" id="ojo"
+                                style="width: max-content; background-color:white; color:black; padding:0%" 
+                                disabled></button>
                             </td>
                 </table>
                 <button class="editbtn" onclick="Edit()">Editar</button>
-                <button class="savebtn" onclick="Save()">Actualizar</button>                               
+                <button class="savebtn" onclick="Save()" id="up" disabled>Actualizar</button>                               
     </section>
 
     <footer id="ftr">
@@ -83,14 +86,29 @@
             document.getElementById("user").focus();
             document.getElementById("email").disabled=false;
             document.getElementById("pasw").disabled=false;
+            document.getElementById("up").disabled=false;
+            document.getElementById("ojo").disabled=false;
         }
 
         function Save() {
             document.getElementById("user").disabled=true;
             document.getElementById("email").disabled=true;
             document.getElementById("pasw").disabled=true;
+            document.getElementById("up").disabled=true;
+            document.getElementById("ojo").disabled=true;
+            document.getElementById("pasw").type="password";
         }
     </script>
+    <script>
+        function mostrarContrasena(){
+            var tipo = document.getElementById("pasw");
+            if(tipo.type == "password"){
+                tipo.type = "text";
+            }else{
+                tipo.type = "password";
+            }
+        }
+      </script>
 </body>
 
 </html>
