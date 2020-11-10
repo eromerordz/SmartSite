@@ -35,28 +35,35 @@ def principal():
     if 'nombre' in session:
         return render_template('principal.html')
     else:
-        return render_template('home.html')
+        return render_template('login.html')
+
+@app.route('/enter')
+def enter():
+    if 'nombre' in session:
+        return render_template('principal.html')
+    else:
+        return render_template('login.html')
 
 @app.route('/historial')
 def historial():
     if 'nombre' in session:
         return render_template('historial.html')
     else:
-        return render_template('home.html')
+        return render_template('login.html')
 
 @app.route('/sensores')
 def sensores():
     if 'nombre' in session:
         return render_template('sensores.html')
     else:
-        return render_template('home.html')
+        return render_template('login.html')
 
 @app.route('/perfil')
 def perfil():
     if 'nombre' in session:
         return render_template('perfil.html')
     else:
-        return render_template('home.html')
+        return render_template('login.html')
 
 @app.route('/recuperarpsw')
 def recuperarpsw():
@@ -106,15 +113,12 @@ def entrar():
             session['id']= usuario[0]
             session['nombre']= usuario[1]
             session['correo']= usuario[2]
-            session['pasw']= usuario[3]
+            session['pasw']= usuario[3].decode("utf-8")
             return redirect(url_for('principal'))
-            # else:
-                # return render_template('home.html')
         else:
-            return render_template('home.html')
-
+            flash("Usuario Incorrecto","alert-warning")
+            return render_template('login.html')
 @app.route("/salir")
 def salir():
     session.clear()
     return redirect(url_for('entrar'))
-

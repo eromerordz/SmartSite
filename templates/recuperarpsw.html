@@ -18,16 +18,20 @@
     </a>
   </header>
 
-  <section id="bdy" style="margin-top: auto;">
-        <h1>Recuperar Contraseña</h1>
-        <form>
+  <section id="bdy" style="margin-top: auto; width:80%">
+        <h2 style="text-align: center; font-size: 2em; margin-bottom:5%">Recuperar Contraseña</h2>
+        <form lass="modal-contentL">
           <div class="container" style="color: black;">
-            <label for="psw"><b><i class="fas fa-key"></i>Nueva Contraseña</b></label>
-            <input type="password" placeholder="Ingresar Contraseña" name="psw"  style="width: 95%;" id="pasw" required>
-            <span class="fa fa-eye-slash icon" onclick="mostrarContrasena()"></span>
-            <label for="psw"><b><i class="fas fa-key"></i>Confirmar Contraseña</b></label>
-            <input type="password" placeholder="Ingresar Contraseña" name="psw" style="width: 95%;" id="passw" required>
-            <span class="fa fa-eye-slash icon" onclick="mostrarContrasena2()"></span>
+            <div class="input-container">
+              <input type="password" name="psw"  style="width: 95%;" id="pasw" required>
+              <label for="psw"><b><i class="fas fa-key"></i>Nueva Contraseña</b></label>
+              <span class="fa fa-eye-slash icon" onclick="mostrarContrasena()"></span>
+            </div>
+            <div class="input-container">
+              <input type="password" name="psw" style="width: 95%;" id="passw" required>
+              <label for="psw"><b><i class="fas fa-key"></i>Confirmar Contraseña</b></label>
+              <span class="fa fa-eye-slash icon" onclick="mostrarContrasena2()"></span>
+            </div>
             <div style="text-align: center;">
               <button type="submit" class="buttonRecuperar" onclick="location.href='/'">Recuperar</button>
             </div>

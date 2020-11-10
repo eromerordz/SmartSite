@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="static/css/styles.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<script src="https://kit.fontawesome.com/b70cada82c.js" crossorigin="anonymous"></script>
+	<title>Login</title>
+	</head>
+<body>
+
+	<header id="hdr">
+		<a id="logo-header" href="/">
+			<span class="site-name">SmartSite</span>
+			<span class="site-desc">FSW</span>
+		</a>
+	</header>
+
+	<section id="bdy" style="width: 35%; margin-top:10%">
+		<form class="modal-contentL animate" method="post" action="/entrar">
+			<h2 style="text-align: center;">Iniciar Sesión</h2>
+			<div class="imgcontainer">
+				<img src="static/src/oso.png" class="avatar">
+			</div>
+			{%with messages = get_flashed_messages(with_categories=true)%}
+				{%if messages %}
+					{%for category, message in messages%}
+						<div class="alert {{category}}" id="idMensajeError">
+							{{message}}
+							<span class="closebtnlogin" onclick="this.parentElement.style.display='none';">&times;</span>
+						</div>
+					{%endfor%}
+				{%endif%}
+			{%endwith%}
+			<div class="container" style="color: black;">
+				<div class="input-container">
+					<input type="text" name="nmCorreo" required="">
+					<label for="uname"><b><i class="fas fa-at"></i>Correo</b></label>
+				</div>
+				<div class="input-container">
+					<input type="password" name="nmPassword" id="pasw" style="width: 94%;" required="">
+					<label for="psw"><b><i class="fas fa-key"></i>Contraseña</b></label>
+					<span class="fa fa-eye-slash icon" onclick="mostrarContrasena()"></span>
+				</div>
+				<button type="submit" onclick="location.href='principal'" class="okbtnH">Entrar</button>						
+				<span class="psw"><a style="color: black;" href="recuperarpswH">Recuperar
+				contraseña</a></span>
+			</div>
+		</form>
+	</section>
+
+	<footer id="ftr">
+		<p><i class="fas fa-code"></i>Fábrica de Software</p>
+	</footer>
+
+	<script>
+        function mostrarContrasena(){
+            var tipo = document.getElementById("pasw");
+            if(tipo.type == "password"){
+                tipo.type = "text";
+            }else{
+                tipo.type = "password";
+            }
+        }
+      </script>
+
+</body>
+</html>

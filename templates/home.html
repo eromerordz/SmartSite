@@ -18,35 +18,9 @@
 		</a>
 		<nav>
 			<ul>
-				<button onclick="document.getElementById('login').style.display='block'" style="width:auto;float:right"
-					class="homebtn"><i class="fas fa-sign-in-alt"></i>Iniciar Sesión</button>
-				<div id="login" class="modal">
-					<form class="modal-content animate" method="post" action="/entrar">
-						<div class="imgcontainer">
-							<span onclick="document.getElementById('login').style.display='none'" class="close"
-								title="Close Modal">&times;</span>
-							<img src="static/src/oso.png" alt="Avatar" class="avatar">
-						</div>
-
-						<div class="container" style="color: black;">
-							<!-- <label for="uname"><b><i class="fas fa-user"></i>Usuario</b></label> -->
-							<!-- <input type="text" placeholder="Ingresar Usuario" name="uname" required> -->
-							<label for="uname"><b><i class="fas fa-at"></i>Correo</b></label>
-							<input type="text" placeholder="Ingresar Correo" name="nmCorreo" required>
-							<label for="psw"><b><i class="fas fa-key"></i>Contraseña</b></label>
-							<input type="password" placeholder="Ingresar Contraseña" name="nmPassword" style="width: 95%;" id="pasw" required>
-							<span class="fa fa-eye-slash icon" onclick="mostrarContrasena()"></span>
-							<button type="submit" onclick="location.href='principal'" class="okbtnH">Entrar</button>						
-						</div>
-
-						<div class="container" style="background-color:#f1f1f1">
-							<button type="button" onclick="document.getElementById('login').style.display='none'"
-								class="cancelbtn">Cancelar</button>
-							<span class="psw"><a style="color: black;" href="recuperarpswH">Recuperar
-									contraseña</a></span>
-						</div>
-					</form>
-				</div>
+				<button onclick="location.href='enter'" style="width:auto;float:right"
+				class="homebtn"><i class="fas fa-sign-in-alt"></i>Iniciar Sesión
+				</button>
 			</ul>
 		</nav>
 	</header>
@@ -60,26 +34,15 @@
 				</div>
 
 				<div class="content">
-					<p style="text-align: center;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-						labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-						laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-						voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-						non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum, dolor sit amet consectetur
-						adipisicing elit. Aliquam quidem quaerat necessitatibus amet! Aliquid provident molestiae adipisci aspernatur sequi ad
-						omnis explicabo esse voluptas ex magni ratione nam, nisi quae. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Ullam id eaque veniam ipsum qui adipisci nostrum autem aliquam quis unde! Ab fugiat corrupti alias sed! Aliquam ipsa in
-						hic voluptates eum commodi, consequatur aspernatur tenetur, ipsum necessitatibus enim architecto temporibus quas autem
-						voluptas, quisquam quaerat distinctio aliquid iusto omnis porro aperiam! Quis inventore commodi magni, aspernatur
-						obcaecati omnis dolores sequi ex asperiores natus hic, nostrum eveniet illum cumque. Pariatur odit ea quidem vitae
-						similique obcaecati quos doloremque enim, voluptatem repellendus, ipsam sapiente facilis minus nihil excepturi
-						cupiditate! Vitae iste, a tenetur nobis doloribus ipsam vel eaque? Perspiciatis ullam error vitae? Necessitatibus,
-						magnam assumenda repudiandae voluptates explicabo ipsa facilis cum, porro labore ducimus ut eligendi quis laboriosam?
-						Cumque quibusdam reprehenderit, at dicta magni accusantium iusto dolorem iure vero veniam ullam neque perspiciatis
-						assumenda natus porro numquam eaque voluptates amet! Corporis saepe modi sed praesentium tenetur aliquid. Error
-						veritatis sint deleniti non voluptas ipsa, voluptates nam sit. Iusto possimus voluptatem officiis, molestias illo
-						ducimus odio odit ad libero, quo explicabo vel pariatur quasi doloribus labore architecto reiciendis. Voluptatibus nihil
-						atque, aliquam exercitationem, voluptas voluptatem earum culpa consequuntur provident vitae eum obcaecati nisi
-						blanditiis quidem sapiente laudantium amet cupiditate. Culpa voluptatibus quae incidunt?</p>
+					<p style="text-align: justify;">
+						SmartSite es una página web desarrollada para poder observar en tiempo real valores de temperatura y humedad de un
+						cuarto donde se alojan los servidores de la Fábrica de Software de la FIME. Esto se logrará con la ayuda de un
+						microcontrolador, el cuál estará posicionado en el cuarto de los servidores, en donde se estará almacenando los
+						registros de temperatura y humedad, mediante los sensores correspondientes, y este microcontrolador, al mismo tiempo,
+						estará enviando los datos hacia una base de datos, misma que servirá para mostrar los valores en una página web, para
+						que el administrador de dicha página pueda ver a que temperatura y humedad se encuentra la sala sin necesidad de estar
+						físicamente en el lugar y con esto lograr un control sobre la temperatura y humedad de la sala de servidores.
+					</p>
 				</div>
 	</section>
 
