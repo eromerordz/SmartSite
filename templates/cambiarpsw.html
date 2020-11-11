@@ -43,26 +43,25 @@
     </header>
 
     <section id="bdy" style="margin-top: auto;">
-            <h1>Perfil</h1>
+            <h1 style="font-size: 50px">Cambiar Contraseña</h1>
                 <table class="myTableP">
                             <td><img src="static/src/oso.png"  style="width: 40%; float:right"></td>
                             <td>
-                                <h2 style="display: inline-block; width:100px; text-align:center">Usuario</h2>
-                                <input type="profile" value="{{session['nombre']}}" id="user" disabled><br>
-                                <h2 style="display: inline-block; width:100px; text-align:center">Correo</h2>
-                                <input type="profile" value="{{session['correo']}}" id="email" disabled><br>
-                                {# <h2 style="display: inline-block; width:100px; text-align:center">Contraseña</h2>
-                                <input type="password" style="width: 60%;" value="{{session['pasw']}}" id="pasw" disabled>
+                                <h2 style="display: inline-block; width:100px; text-align:center">Contraseña</h2>
+                                <input type="password" style="width: 60%;" id="pasw" >
                                 <button class="fa fa-eye-slash icon" onclick="mostrarContrasena()" id="ojo"
                                 style="width: max-content; background-color:white; color:black; padding:0%" 
-                                disabled></button> #}
+                                ></button><br>
+                                <h2 style="display: inline-block; width:100px; text-align:center">Confirmar</h2>
+                                <input type="password" style="width: 60%;" id="npasw" >
+                                <button class="fa fa-eye-slash icon" onclick="mostrarContrasena2()" id="ojo2"
+                                style="width: max-content; background-color:white; color:black; padding:0%" 
+                                ></button>
                             </td>
-                        </table>
-                        <button class="editbtn" onclick="Edit()">Editar</button>
-                        <button class="savebtn" onclick="Save()" id="up" disabled>Actualizar</button>                               
-                        <span class=""><a style="color: black; display:inline-block; margin-left:85%" href="cambiar">Cambiar
-                            contraseña</a></span>
-                    </section>
+                </table>
+                <button class="addbtn" style="margin-top: 5%; width: 15%" onclick="location.href='/salir';" id="up" >Actualizar</button>  
+                <button class="backbtn" style="float:left; margin:0%; width:5%; margin-top:-4%" onclick="location.href='perfil'"><i class="fas fa-arrow-left"></i></button>                             
+    </section>
 
     <footer id="ftr">
         <p><i class="fas fa-code"></i>Fábrica de Software</p>
@@ -82,21 +81,27 @@
     <script>
         $('#dtTemperaturas').DataTable();
     </script>
+
     <script>
-        function Edit() {
-            document.getElementById("user").disabled=false;
-            document.getElementById("user").focus();
-            document.getElementById("email").disabled=false;    
-            document.getElementById("up").disabled=false;        
+        function mostrarContrasena(){
+            var tipo = document.getElementById("pasw");
+            if(tipo.type == "password"){
+                tipo.type = "text";
+            }else{
+                tipo.type = "password";
+            }
         }
-
-        function Save() {
-            document.getElementById("user").disabled=true;
-            document.getElementById("email").disabled=true;
-            document.getElementById("up").disabled=true;
+      </script>
+      <script>
+        function mostrarContrasena2(){
+            var tipo = document.getElementById("npasw");
+            if(tipo.type == "password"){
+                tipo.type = "text";
+            }else{
+                tipo.type = "password";
+            }
         }
-    </script>
-
+      </script>
 </body>
 
 </html>

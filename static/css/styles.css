@@ -218,7 +218,7 @@ button:hover {
 .savebtn {
 	width: 15%;
 	padding: 10px 18px;
-	background-color: green;
+	background-color: #67b436;
 	font-size: 15px;
 	border-radius: 10px;
 	cursor: pointer;
@@ -240,7 +240,7 @@ button:hover {
 .okbtnH {
 	width: 40%;
 	padding: 10px 18px;
-	background-color: green;
+	background-color: #67b436;
 	font-size: 15px;
 	border-radius: 10px;
 	cursor: pointer;
@@ -252,7 +252,7 @@ button:hover {
 .addbtn {
 	width: 20%;
 	padding: 10px 18px;
-	background-color: green;
+	background-color: #67b436;
 	font-size: 15px;
 	border-radius: 10px;
 	cursor: pointer;
@@ -265,7 +265,7 @@ button:hover {
 .updatebtn {
 	width: 20%;
 	padding: 10px 18px;
-	background-color: green;
+	background-color: #67b436;
 	font-size: 15px;
 	border-radius: 10px;
 	cursor: pointer;
@@ -404,6 +404,36 @@ span.psw {
 	margin-top: 15px;
 }
 
+.nextbtn {
+	background-color: #67b436;
+	color: white;
+	padding: 15px;
+	font-size: 20px;
+	border-radius: 100%;
+	cursor: pointer;
+	margin-top: 15px;
+	width: 6%;
+}
+
+.backbtn {
+	background-color: white;
+	color: black;
+	padding: 1px;
+	font-size: 30px;
+	border-radius: 100%;
+	cursor: pointer;
+}
+
+.rightbtn {
+	background-color: #67b436;
+	color: white;
+	padding: 15px;
+	font-size: 20px;
+	border-radius: 100%;
+	cursor: pointer;
+	margin-top: 15px;
+	width: 6%;
+}
 .dropdown {
 	position: relative;
 	right: 1%;

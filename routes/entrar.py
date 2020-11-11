@@ -65,6 +65,13 @@ def perfil():
     else:
         return render_template('login.html')
 
+@app.route('/cambiar')
+def cambiar():
+    if 'nombre' in session:
+        return render_template('cambiarpsw.html')
+    else:
+        return render_template('login.html')
+
 @app.route('/recuperarpsw')
 def recuperarpsw():
     if 'nombre' in session:
