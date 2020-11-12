@@ -48,10 +48,10 @@
                 <table class="myTableS">
                     <thead>
                         <tr>
-                            <th>Imagen</th>
                             <th>Nombre</th>
                             <th># Pin</th>
                             <th>Tipo</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -59,23 +59,32 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td></td>
+                            <td>
+                                <button class="crudbtn"><i class="fas fa-pen"></i></button>
+                                <button class="crudbtn"><i class="fas fa-trash-alt"></i></button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
                 <button type="button" onclick="document.getElementById('agregar').style.display='block'" class="addbtn">Agregar</button>
                 <div id="agregar" class="modal">
-                    <form class="modal-content animate" method="post" style="width: 35%; margin-top:10%">
+                    <form class="modal-content animate" method="post" style="width: 80%;">
                         <span onclick="document.getElementById('agregar').style.display='none'" class="clo">&times;</span>
                         <h3 style="text-align: center;">Agregar Sensor</h3>
-                        <div class="container" style="color: black;">    
-                            <label for="name" style="display: inline-block; width:100px; padding-left:2%"><b>Nombre</b></label>
-                            <input type="add" placeholder="Nombre del sensor" name="name" required><br>
-                            <label for="pin" style="display: inline-block; width:100px; padding-left:2%"><b>No. Pin</b></label>
-                            <input type="number" placeholder="# Pin" name="pin" required><br>
-                            <label for="tipo" style="display: inline-block; width:100px; padding-left:2%"><b>Tipo de Pin</b></label>
-                            <input type="add" placeholder="Interno o Externo" name="name" required>
-                        </div>
+                        <table class="mytableAS">
+                            <td style="width: 55%; border:none;  padding:0px;">
+                                <img src="/static/conecciones.png" style="width: 95%;" alt="sensoresImg">
+                            </td>
+                            <td style="width: 45%; border:none; padding-left:0px">
+                                    <label for="name" style="display: inline-block; width:100px; padding-left:2%"><b>Nombre</b></label>
+                                    <input type="add" placeholder="Nombre del sensor" name="name" required><br>
+                                    <label for="pin" style="display: inline-block; width:100px; padding-left:2%"><b>No. Pin</b></label>
+                                    <input type="number" placeholder="# Pin" name="pin" required><br>
+                                    <label for="tipo" style="display: inline-block; width:100px; padding-left:2%"><b>Tipo de Pin</b></label>
+                                    <input type="add" placeholder="Interno o Externo" name="name" required>
+                                        
+                            </td>
+                        </table>
                         <div class="container" style="background-color:#f1f1f1">                        
                             <button type="button" class="addbtn" onclick="location.href='sensores'" style="margin-top: 0%; width:auto">Confirmar</button>
                         </div>
