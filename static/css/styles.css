@@ -150,10 +150,9 @@ input[type=text], input[type=password] {
 }
 
 input[type=add], input[type=number]{
-	width: 70%;
+	width: 90%;
 	padding: 12px 20px;
-	margin: 8px 0;
-	display: inline-block;
+	margin: 10px 0;
 	border: 1px solid #ccc;
 	box-sizing: border-box;
 }
@@ -342,7 +341,7 @@ span.psw {
 
 .clo {
 	position: relative;
-	left: 98%;
+	left: 97%;
 	color: #000;
 	font-size: 35px;
 	font-weight: bold;
@@ -407,7 +406,8 @@ span.psw {
 .crudbtn {
 	background-color: white;
 	color: #67b436;
-	padding: 0px 10px;
+	padding: 0px 5px;
+	margin: 0px;
 	font-size: 20px;
 	cursor: pointer;
 	display: inline-block;

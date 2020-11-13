@@ -7,9 +7,33 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <script src="https://kit.fontawesome.com/b70cada82c.js" crossorigin="anonymous"></script>
     <title>Sensores</title>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+
 </head>
 
 <body>
+
+<style>
+    * {margin: 0; padding: 0;}
+    .magnify {
+        width: 550px; 
+        margin: 50px auto; 
+        position: relative;
+    }
+
+    .large {
+        width: 250px; height: 250px;
+        position: absolute;
+        border-radius: 100%;
+        box-shadow: 
+        inset 0 0 40px 2px rgba(0, 0, 0, 0.25);
+        background: url("/static/conecciones.png") no-repeat;
+        display: none;
+    }
+    .small { display: block; }
+</style>
 
     <header id="hdr">
         <a id="logo-header" href="/">
@@ -68,21 +92,23 @@
                 </table>
                 <button type="button" onclick="document.getElementById('agregar').style.display='block'" class="addbtn">Agregar</button>
                 <div id="agregar" class="modal">
-                    <form class="modal-content animate" method="post" style="width: 80%;">
+                    <form class="modal-content animate" method="post" style="width: 65%; height:75%">
                         <span onclick="document.getElementById('agregar').style.display='none'" class="clo">&times;</span>
-                        <h3 style="text-align: center;">Agregar Sensor</h3>
+                        <h3 style="text-align: center; font-size:30px; margin-top:1%">Agregar Sensor</h3>
                         <table class="mytableAS">
-                            <td style="width: 55%; border:none;  padding:0px;">
-                                <img src="/static/conecciones.png" style="width: 95%;" alt="sensoresImg">
+                            <td style="width: 55%; border:none;  padding:10px;">
+                                <div class="magnify">
+                                    <div class="large"></div>
+                                        <img class="small" src="/static/conecciones.png" alt="sensoresImg"/>
+                                </div>
                             </td>
-                            <td style="width: 45%; border:none; padding-left:0px">
-                                    <label for="name" style="display: inline-block; width:100px; padding-left:2%"><b>Nombre</b></label>
+                            <td style="width: 45%; border:none; padding-left:10px; text-align:center">
+                                    <label for="name"><b>Nombre</b></label>
                                     <input type="add" placeholder="Nombre del sensor" name="name" required><br>
-                                    <label for="pin" style="display: inline-block; width:100px; padding-left:2%"><b>No. Pin</b></label>
+                                    <label for="pin" ><b>No. Pin</b></label>
                                     <input type="number" placeholder="# Pin" name="pin" required><br>
-                                    <label for="tipo" style="display: inline-block; width:100px; padding-left:2%"><b>Tipo de Pin</b></label>
-                                    <input type="add" placeholder="Interno o Externo" name="name" required>
-                                        
+                                    <label for="tipo"><b>Tipo de Pin</b></label>
+                                    <input type="add" placeholder="Interno o Externo" name="name" required>                                        
                             </td>
                         </table>
                         <div class="container" style="background-color:#f1f1f1">                        
@@ -109,6 +135,49 @@
     <script>
         $('#dtTemperaturas').DataTable();
     </script>
+
+    <script>
+        $(document).ready(function(){
+        
+            var native_width = 0;
+            var native_height = 0;
+        
+            $(".magnify").mousemove(function(e){                
+                if(!native_width && !native_height)
+                {
+                    var image_object = new Image();
+                    image_object.src = $(".small").attr("src");                    
+                    native_width = image_object.width;
+                    native_height = image_object.height;
+                }
+                else
+                {
+                    var magnify_offset = $(this).offset();
+                    var mx = e.pageX - magnify_offset.left;
+                    var my = e.pageY - magnify_offset.top;
+                    if(mx < $(this).width() && my < $(this).height() && mx > 0 && my > 0)
+                    {
+                        $(".large").fadeIn(100);
+                    }
+                    else
+                    {
+                        $(".large").fadeOut(100);
+                    }
+                    if($(".large").is(":visible"))
+                    {
+                        var rx = Math.round(mx/$(".small").width()*native_width - $(".large").width()/2)*-1;
+                        var ry = Math.round(my/$(".small").height()*native_height - $(".large").height()/2)*-1;
+                        var bgp = rx + "px " + ry + "px";
+                        var px = mx - $(".large").width()/2;
+                        var py = my - $(".large").height()/2;
+                        $(".large").css({left: px, top: py, backgroundPosition: bgp});
+                    }
+                }
+            })
+        })
+        </script>
+                
+
 </body>
 
 </html>
