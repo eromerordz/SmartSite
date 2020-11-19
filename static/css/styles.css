@@ -152,7 +152,7 @@ input[type=text], input[type=password] {
 input[type=add], input[type=number]{
 	width: 90%;
 	padding: 12px 20px;
-	margin: 10px 0;
+	margin: 8px 0;
 	border: 1px solid #ccc;
 	box-sizing: border-box;
 }
@@ -284,6 +284,8 @@ button:hover {
 	text-align: center;
 	margin: 24px 0 12px 0;
 }
+
+.imgcontainerH:hover {filter: blur(1px);}
 
 img.avatar {
 	width: 35%;
