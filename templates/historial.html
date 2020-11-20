@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="static/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <script src="https://kit.fontawesome.com/b70cada82c.js" crossorigin="anonymous"></script>
+    <script src="static/SortTable/sort-table.js"></script>
     <title>Registros - SmartSite</title>
     <link rel="shortcut icon" href="static/src/favicon.ico">
 </head>
@@ -44,18 +45,16 @@
 
     <section id="bdy">
         <h1>Registros</h1>
-        <div class="table-responsive" id="divdtTemHum">
-            <table class="myTable" id="dtTemperaturas">
+            <table class="js-sort-table" id="myTable">
                 <thead>
                     <tr>
-                        <th>Temperatura Cº</th>
-                        <th>Humedad %</th>
+                        <th class="js-sort-number">Temperatura Cº</th>
+                        <th class="js-sort-number">Humedad %</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="contenido">
                 </tbody>
             </table>
-        </div>
     </section>
 
     <footer id="ftr">
@@ -70,11 +69,33 @@
             }
         } 
     </script>
-    <script src="static/Scripts/jquery-3.3.1.js"></script>
-    <script src="static/Scripts/cargarTemp.js"></script>
-    <script src="static/PlantillasDB/datatables.min.js"></script>
     <script>
-        $('#dtTemperaturas').DataTable();
+
+        window.onload=traer();
+
+        var conten = document.querySelector('#contenido')
+
+        function traer(){
+            fetch('https://ejemploapiagel.herokuapp.com/api/getTemphum')
+            .then(res => res.json())
+            .then(datos => {
+                tabla(datos)
+            })
+        }
+
+        function tabla(datos){
+            contenido.innerHTML = ''
+            for(let valor of datos){
+                contenido.innerHTML += `
+                <tr>
+                    <th>${ valor.temperatura}</th>
+                    <th>${ valor.humedad}</th>
+                </tr>
+                `
+            }
+
+        }
+
     </script>
 </body>
 

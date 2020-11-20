@@ -47,19 +47,15 @@
 
     <section id="bdy" style="margin-top: auto;">
                 <h1>Temperatura Actual</h1>
-                <div class="content">
-                    <div class="table-responsive" id="divdtTemHum">
-                        <table class="myTableActual" id="dtTemperaturas">
+                        <table class="myTableActual">
                             <thead> 
-                                <th>Temperatura Cº</th>
-                                <th>Humedad %</th>
+                                <th>Temperatura</th>
+                                <th>Humedad</th>
                             </thead>
-                            <tbody>
+                            <tbody id="contenido">
                             </tbody>
                         </table>
-                    </div>
                     <span class="psw"><a style="color: green;" href="historial">Ver registro de datos</a></span>
-                </div>
     </section>
 
     <footer id="ftr">
@@ -72,12 +68,35 @@
                 modal.style.display = "none";
             }
         }
-    </script>
-    <script src="static/Scripts/jquery-3.3.1.js"></script>
-    <script src="static/Scripts/cargarActual.js"></script>
-    <script src="static/PlantillasDB/datatables.min.js"></script>
+    </script>    
     <script>
-        $('#dtTemperaturas').DataTable();
+
+        window.onload=traer();
+
+        var conten = document.querySelector('#contenido')
+
+        function traer(){
+            fetch('https://ejemploapiagel.herokuapp.com/api/getTemphum')
+            .then(res => res.json())
+            .then(datos => {
+                tabla(datos)
+            })
+        }
+
+        function tabla(datos){
+            contenido.innerHTML = ''
+            for(let valor of datos){
+                contenido.innerHTML += `
+                <tr>
+                    <th>${ valor.temperatura}º</th>
+                    <th>${ valor.humedad}%</th>
+                </tr>
+                `
+            break
+            }
+
+        }
+
     </script>
 </body>
 

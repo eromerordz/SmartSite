@@ -479,9 +479,15 @@ span.psw {
 	color: white;
 }
 
-.myTable{
+#myTable{
 	border-collapse: collapse;
 	width: 100%;
+}
+
+#myTable tbody th{
+	background-color: white;
+	color: black;
+	font-weight: 500;
 }
 
 th,tfoot{
@@ -507,11 +513,19 @@ td {
 	font-weight: 500;
 }
 
-.myTableActual th{
+.myTableActual thead {
 	font-weight: 200;
 	line-height: 1.0em;
 	font-size: .5em;
 	width: 100px;
+}
+
+.myTableActual tbody th{
+	background-color: white;
+	color: black;
+	font-size: 1.5em;
+	line-height: 3.0em;
+	font-weight: 500;
 }
 
 .myTableS{
