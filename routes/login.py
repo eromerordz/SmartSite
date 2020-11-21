@@ -7,19 +7,12 @@ import bcrypt
 def login():
     return render_template('hello.html')
 
-@app.route('/okey')
-def okey():
-    if session['clima'] == app.config['SECRET_KEY']:
-        return render_template('hello.html')
-    else:
-        return jsonify(False)
-
-@app.route("/postRegistro", methods=["POST","GET"])
+@app.route("/postRegistro", methods=["POST"])
 def postRegistro():
     data = request.form.to_dict()
     email = data['email'] 
     name = data['name']
-    passw = str(data['pass'])+','+str(data['email'])
+    passw = str(data['pass'])
     passw = hapassword(passw.encode('utf-8')).decode('utf-8')
     try:
         cnx = mysql.connector.connect(**mydb)
@@ -45,7 +38,7 @@ def postRegistro():
     except Exception as e:
         return jsonify({'msg':str(e)})
 
-@app.route("/getRegistro", methods=["POST","GET"])
+@app.route("/getRegistro", methods=["GET"])
 def getRegistro():
     data = request.args.to_dict()
     email = data['email']
@@ -64,6 +57,50 @@ def getRegistro():
                 return jsonify(True)
             else:
                 return jsonify(False)
+        except Exception as e:
+            return jsonify({'msg':'ERROR:'+str(e)})
+        finally:
+            cur.close()
+            cnx.close()
+    except Exception as e:
+        return jsonify({'msg':str(e)})
+
+# @app.route("/putRegistro", methods=["PUT"])
+# def putregistr():
+#     data = request.form.to_dict()
+#     email = data['email'] 
+#     name = data['name']
+#     id_us = data['id']
+#     try:
+#         cnx = mysql.connector.connect(**mydb)
+#         cur = cnx.cursor()
+#         try:
+#             query = "UPDATE Users SET Users_Name='%s', Users_Correo='%s' WHERE Users_Id = '%s';"%(name,email,id_us)
+#             cur.execute(query)
+#             cnx.commit()
+#             return jsonify({'msg':str(data)})
+#         except Exception as e:
+#             return jsonify({'msg':'ERROR:'+str(e)})
+#         finally:
+#             cur.close()
+#             cnx.close()
+#     except Exception as e:
+#         return jsonify({'msg':str(e)})
+
+@app.route("/putchangepassword", methods=["PUT"])
+def putchangepassword():
+    data = request.form.to_dict()
+    passw = data['password']
+    id_us = data['id']
+    passw = hapassword(passw.encode('utf-8')).decode('utf-8')
+    try:
+        cnx = mysql.connector.connect(**mydb)
+        cur = cnx.cursor()
+        try:
+            query = "UPDATE Users SET password_b='%s' WHERE Users_Id = '%s';"%(passw,id_us)
+            cur.execute(query)
+            cnx.commit()
+            return jsonify({'msg':str(data)})
         except Exception as e:
             return jsonify({'msg':'ERROR:'+str(e)})
         finally:

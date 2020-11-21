@@ -49,10 +49,20 @@
                 <h1>Temperatura Actual</h1>
                         <table class="myTableActual">
                             <thead> 
+                                <th>Sensor</th>
                                 <th>Temperatura</th>
                                 <th>Humedad</th>
+                                <th>Hora</th>
                             </thead>
                             <tbody id="contenido">
+                                {% for new in actual %}
+                                <tr>
+                                    <td>{{new.1}}</td>
+                                    <td>{{new.2}}º</td>
+                                    <td>{{new.3}}%</td>
+                                    <td>{{new.4}}</td>
+                                </tr>                        
+                                {% endfor %}
                             </tbody>
                         </table>
                     <span class="psw"><a style="color: green;" href="historial">Ver registro de datos</a></span>
@@ -69,7 +79,7 @@
             }
         }
     </script>    
-    <script>
+    {# <script>
 
         window.onload=traer();
 
@@ -97,7 +107,7 @@
 
         }
 
-    </script>
+    </script> #}
 </body>
 
 </html>

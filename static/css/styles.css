@@ -54,7 +54,7 @@ body {
 }
 
 h1 {
-	font-size: 4.0em;
+	font-size: 3.5em;
 	line-height: 1.5em;
 	margin: 15px 0;
 	text-align: center;
@@ -506,10 +506,10 @@ td {
 }
 
 .myTableActual{
-	width: 50%;
+	width: 80%;
 	margin: auto;
-	font-size: 2em;
-	line-height: 4.0em;
+	font-size: 2.0em;
+	line-height: 1.5em;
 	font-weight: 500;
 }
 
@@ -523,9 +523,9 @@ td {
 .myTableActual tbody th{
 	background-color: white;
 	color: black;
-	font-size: 1.5em;
-	line-height: 3.0em;
-	font-weight: 500;
+	font-size: 0.5em;
+	line-height: 1.0em;
+	font-weight: 100;
 }
 
 .myTableS{

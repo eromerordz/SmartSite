@@ -48,11 +48,21 @@
             <table class="js-sort-table" id="myTable">
                 <thead>
                     <tr>
+                        <th class="js-sort-number">Sensor</th>
                         <th class="js-sort-number">Temperatura Cº</th>
                         <th class="js-sort-number">Humedad %</th>
+                        <th class="js-sort-desc">Hora</th>
                     </tr>
                 </thead>
                 <tbody id="contenido">
+                        {% for his in history %}
+                        <tr>
+                            <td>{{his.1}}</td>
+                            <td>{{his.2}}</td>
+                            <td>{{his.3}}</td>
+                            <td>{{his.4}}</td>
+                        </tr>                        
+                        {% endfor %}
                 </tbody>
             </table>
     </section>
@@ -69,7 +79,7 @@
             }
         } 
     </script>
-    <script>
+    {# <script>
 
         window.onload=traer();
 
@@ -96,7 +106,7 @@
 
         }
 
-    </script>
+    </script> #}
 </body>
 
 </html>

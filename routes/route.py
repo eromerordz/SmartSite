@@ -1,5 +1,5 @@
 from BClima import app, mydb
-from flask import jsonify, request, render_template
+from flask import jsonify, request
 import random
 @app.route('/api')
 def index():
@@ -10,3 +10,7 @@ def index():
         algo = {'Temperatura':temp, 'Humedad':hum}
         y.append(algo)
     return jsonify(y)
+
+@app.route('/home')
+def home():
+    return render_template('hello.html')

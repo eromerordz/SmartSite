@@ -76,25 +76,27 @@
                     <thead>
                         <tr>
                             <th>Nombre</th>
-                            <th># Pin</th>
                             <th>Tipo</th>
+                            <th># Pin</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
+                        {% for se in sens %}
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{{se.1}}</td>
+                            <td>{{se.2}}</td>
+                            <td>{{se.3}}</td>
                             <td>
                                 <button class="crudbtn"><i class="fas fa-pen"></i></button>
                                 <button class="crudbtn"><i class="fas fa-trash-alt"></i></button>
                             </td>
-                        </tr>
+                        </tr>                        
+                        {% endfor %}
                     </tbody>
                 </table>
                 <button type="button" onclick="document.getElementById('agregar').style.display='block'" class="addbtn"
-                    style="width: 20%;">Agregar</button>
+                    style="width: 20%; margin-top:5%">Agregar</button>
                 <div id="agregar" class="modal">
                     <form class="modal-content animate" method="post" style="width: 65%; height:auto; margin-top:8%;">
                         <span onclick="document.getElementById('agregar').style.display='none'" class="clo">&times;</span>
@@ -110,7 +112,7 @@
                                     <label for="name"><b>Nombre</b></label>
                                     <input type="add" placeholder="Nombre del sensor" name="name" required><br>
                                     <label for="pin" ><b>No. Pin</b></label>
-                                    <input type="number" placeholder="# Pin" name="pin" min="1" max="26" required><br>
+                                    <input type="number" placeholder="# Pin" name="pin" min="0" max="26" required><br>
                                     <label for="tipo"><b>Tipo de Pin</b></label>
                                     <input type="text" style="width: 90%;" placeholder="Interno o Externo" required
                                         pattern="Interno|Externo|interno|externo|INTERNO|EXTERNO" name="name" id="intext">
