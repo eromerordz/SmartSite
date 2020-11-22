@@ -65,6 +65,24 @@ def getRegistro():
     except Exception as e:
         return jsonify({'msg':str(e)})
 
+@app.route("/updateUsuario/<id>", methods=['POST'])
+def updateUsuario(id):
+    if (request.method == 'POST'):
+        name = request.form['nombre']
+        email = request.form['correo']
+        cnx = mysql.connector.connect(**mydb)
+        cur = cnx.cursor()
+        cur.execute("""
+        UPDATE users
+        SET Users_Name = %s,
+        Users_Correo = %s
+        WHERE Users_Id = %s
+        """, (name,email,id))
+        cnx.commit()
+        # flash("Sensor actualizado","warning")
+        session.clear()
+        return redirect(url_for('entrar'))
+        
 # @app.route("/putRegistro", methods=["PUT"])
 # def putregistr():
 #     data = request.form.to_dict()

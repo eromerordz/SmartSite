@@ -44,48 +44,27 @@
     </header>
 
     <section id="bdy" style="margin-top: auto;">
-            <h1>Perfil</h1>
-                <table class="myTableP">
-                            <td><img src="static/src/oso.png"  style="width: 40%; float:right"></td>
-                            <td>
-                                <input type="profile" value="{{session['id']}}" id="id" disabled><br>
-                                <h2 style="display: inline-block; width:100px; text-align:center">Usuario</h2>
-                                <input type="profile" value="{{session['nombre']}}" id="name" disabled><br>
-                                <h2 style="display: inline-block; width:100px; text-align:center">Correo</h2>
-                                <input type="profile" value="{{session['correo']}}" id="email" disabled><br>
-                                {# <h2 style="display: inline-block; width:100px; text-align:center">Contraseña</h2>
-                                <input type="password" style="width: 60%;" value="{{session['pasw']}}" id="pasw" disabled>
-                                <button class="fa fa-eye-slash icon" onclick="mostrarContrasena()" id="ojo"
-                                style="width: max-content; background-color:white; color:black; padding:0%" 
-                                disabled></button> #}
-                            </td>
-                        </table>
-                        <button class="editbtn" onclick="Edit()">Editar</button>
-                        <button class="savebtn" onclick="Save()" id="up" disabled>Actualizar</button>                               
-                        <span class=""><a style="color: black; display:inline-block; margin-left:85%" href="cambiar">Cambiar
-                            contraseña</a></span>
-                        <button onclick="update()">up</button>
-                    </section>
+        <form action="/updateUsuario/{{session['id']}}" method="post">
+            <h1>Perfil<i class="fas fa-unlock" onclick="Edit()" style="cursor: pointer; display:inline-block;margin-left: 1%;"></i></h1>
+            <table class="myTableP">
+                <td><img src="static/src/oso.png"  style="width: 40%; float:right"></td>
+                <td>
+                    <h2 style="display: inline-block; width:100px; text-align:center">Usuario</h2>
+                    <input type="profile" value="{{session['nombre']}}" id="name" name="nombre" disabled><br>
+                    <h2 style="display: inline-block; width:100px; text-align:center">Correo</h2>
+                    <input type="profile" value="{{session['correo']}}" id="email" name="correo" disabled><br>
+                </td>
+            </table>
+            
+            <button class="editbtn" id="up" disabled>Actualizar</button>
+            <span class=""><a style="color: black; display:inline-block; margin-left:85%" href="cambiar">Cambiar
+                contraseña</a></span>
+        </form>
+        </section>
 
     <footer id="ftr">
         <p><i class="fas fa-code"></i>Fábrica de Software</p>
     </footer>
-
-    <script>
-        function update(){
-            let id  = document.getElementById('id').value;
-            let email  = document.getElementById('email').value;
-            let name = document.getElementById('name').value;
-            var r = new XMLHttpRequest();
-            r.open("PUT", "/putRegistro", true);
-            r.onreadystatechange = function () {
-              if (r.readyState != 4 || r.status != 200) return;
-              alert("Success: " + r.responseText);
-            };
-            r.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            r.send("email="+email+"&name="+name+"&id="+id);
-        }
-    </script>
 
     <script>
         var modal = document.getElementById('close');    
@@ -107,12 +86,6 @@
             document.getElementById("name").focus();
             document.getElementById("email").disabled=false;    
             document.getElementById("up").disabled=false;        
-        }
-
-        function Save() {
-            document.getElementById("name").disabled=true;
-            document.getElementById("email").disabled=true;
-            document.getElementById("up").disabled=true;
         }
     </script>
 

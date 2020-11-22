@@ -149,27 +149,27 @@ def entrar():
             flash("Usuario Incorrecto","alert-warning")
             return render_template('login.html')
 
-@app.route("/putRegistro", methods=['PUT'])
-def putregistr():
-    data = request.form.to_dict()
-    email = data['email'] 
-    name = data['name']
-    id_us = int(data['id'])
+# @app.route("/putRegistro", methods=['PUT'])
+# def putregistr():
+#     data = request.form.to_dict()
+#     email = data['email'] 
+#     name = data['name']
+#     id_us = int(data['id'])
 
-    try:
-        cursor = mysql.get_db().cursor()
-        try:
-            cursor.execute("UPDATE Users SET Users_Name='%s', Users_Correo='%s' WHERE Users_Id = %d;"%(name,email,id_us))
-            # query = "UPDATE Users SET Users_Name='%s', Users_Correo='%s' WHERE Users_Id = '%s';"%(name,email,id_us)
-            # cur.execute(query)
-            return jsonify({'msg':str(data)})
-        except Exception as e:
-            return jsonify({'msg':'ERROR:'+str(e)})
-        finally:
-            cursor.close()
-            # cnx.close()
-    except Exception as e:
-        return jsonify({'msg':str(e)})
+#     try:
+#         cursor = mysql.get_db().cursor()
+#         try:
+#             cursor.execute("UPDATE Users SET Users_Name='%s', Users_Correo='%s' WHERE Users_Id = %d;"%(name,email,id_us))
+#             # query = "UPDATE Users SET Users_Name='%s', Users_Correo='%s' WHERE Users_Id = '%s';"%(name,email,id_us)
+#             # cur.execute(query)
+#             return jsonify({'msg':str(data)})
+#         except Exception as e:
+#             return jsonify({'msg':'ERROR:'+str(e)})
+#         finally:
+#             cursor.close()
+#             # cnx.close()
+#     except Exception as e:
+#         return jsonify({'msg':str(e)})
 
 @app.route("/salir")
 def salir():
