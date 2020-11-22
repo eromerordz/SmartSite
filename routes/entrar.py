@@ -74,6 +74,13 @@ def sensores():
     else:
         return render_template('login.html')
 
+# @app.route('/eS')
+# def eSen():
+#     if 'nombre' in session:
+#         return render_template('editsensor.html')
+#     else:
+#         return render_template('login.html')
+
 @app.route('/perfil')
 def perfil():
     if 'nombre' in session:

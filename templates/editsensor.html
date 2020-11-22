@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="static/css/styles.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<script src="https://kit.fontawesome.com/b70cada82c.js" crossorigin="anonymous"></script>
+	<title>Iniciar Sesión - SmartSite</title>
+    <link rel="shortcut icon" href="static/src/favicon.ico">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}">
+	</head>
+<body>
+
+    <style>
+        * {margin: 0; padding: 0;}
+        .magnify {
+            width: 550px; 
+            margin: 50px auto; 
+            position: relative;
+        }
+    
+        .large {
+            width: 250px; height: 250px;
+            position: absolute;
+            border-radius: 100%;
+            box-shadow: 
+            inset 0 0 40px 2px rgba(0, 0, 0, 0.25);
+            background: url("/static/conecciones.png") no-repeat;
+            display: none;
+        }
+        .small { display: block; }
+    </style>
+
+	<header id="hdr">
+		<a id="logo-header" href="/">
+			<span class="site-name">SmartSite</span>
+			<span class="site-desc">FSW</span>
+		</a>
+	</header>
+
+	<section id="bdy" style="width: 100%; height:auto; margin-top:10%">
+        <h3 style="text-align: center; font-size:30px; margin-top:1%; margin-bottom:-3%">Editar Sensor</h3>
+        <button class="backbtn" style="float:left; margin:0%; width:5%; margin-top:0%" onclick="location.href='/sensores'"><i class="fas fa-arrow-left"></i></button>
+        <form action="/updateSensor/{{sens.0}}" class="modal-content" method="POST" style="width: 100%; border:none; margin:0%; padding:0%">
+            <table class="mytableAS">
+                <td style="width: 55%; border:none; padding:10px;">
+                    <div class="magnify">
+                        <div class="large"></div>
+                            <img class="small" src="/static/conecciones.png" alt="sensoresImg"/>
+                    </div>
+                </td>
+                <td style="width: 45%; border:none; padding-left:10px; text-align:center">
+                        <label for="name"><b>Nombre</b></label>
+                        <input type="add" placeholder="Nombre del sensor" name="name" value="{{sens.1}}" required><br>
+                        <label for="tipo"><b>Tipo de Pin</b></label>
+                        <input type="number" placeholder="Interno (0) - Externo (1)" name="tipo" min="0" max="1"  value="{{sens.2}}" required><br>
+                        <label for="pin" ><b>No. Pin</b></label>
+                        <input type="number" placeholder="# Pin" name="pin" min="0" max="26" value="{{sens.3}}" required>
+                        <button type="submit" class="addbtn" style="margin-top: 8%; width:40%">Confirmar</button>
+                </td>
+            </table>
+        </form>
+	</section>
+
+	<footer id="ftr">
+		<p><i class="fas fa-code"></i>Fábrica de Software</p>
+	</footer>
+
+    <script>
+        $(document).ready(function(){
+        
+            var native_width = 0;
+            var native_height = 0;
+        
+            $(".magnify").mousemove(function(e){                
+                if(!native_width && !native_height)
+                {
+                    var image_object = new Image();
+                    image_object.src = $(".small").attr("src");                    
+                    native_width = image_object.width;
+                    native_height = image_object.height;
+                }
+                else
+                {
+                    var magnify_offset = $(this).offset();
+                    var mx = e.pageX - magnify_offset.left;
+                    var my = e.pageY - magnify_offset.top;
+                    if(mx < $(this).width() && my < $(this).height() && mx > 0 && my > 0)
+                    {
+                        $(".large").fadeIn(100);
+                    }
+                    else
+                    {
+                        $(".large").fadeOut(100);
+                    }
+                    if($(".large").is(":visible"))
+                    {
+                        var rx = Math.round(mx/$(".small").width()*native_width - $(".large").width()/2)*-1;
+                        var ry = Math.round(my/$(".small").height()*native_height - $(".large").height()/2)*-1;
+                        var bgp = rx + "px " + ry + "px";
+                        var px = mx - $(".large").width()/2;
+                        var py = my - $(".large").height()/2;
+                        $(".large").css({left: px, top: py, backgroundPosition: bgp});
+                    }
+                }
+            })
+        })
+        </script>
+
+</body>
+</html>

@@ -8,12 +8,9 @@
     <script src="https://kit.fontawesome.com/b70cada82c.js" crossorigin="anonymous"></script>
     <title>Sensores - SmartSite</title>
     <link rel="shortcut icon" href="static/src/favicon.ico">
-    <meta http-equiv='cache-control' content='no-cache'>
-    <meta http-equiv='expires' content='0'>
-    <meta http-equiv='pragma' content='no-cache'>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
-
+    <link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}">
 </head>
 
 <body>
@@ -72,6 +69,16 @@
 
     <section id="bdy">
                 <h1>Sensores</h1>
+                {% with messages = get_flashed_messages (with_categories = True) %}
+				{% if messages %}
+					{% for category, message in messages %}
+						<div class="{{category}}">
+							{{message}}
+							<span class="closebtnlogin" onclick="this.parentElement.style.display='none';">&times;</span>
+						</div>
+					{% endfor %}
+				{% endif %}
+                {% endwith %}           
                 <table class="myTableS">
                     <thead>
                         <tr>
@@ -88,8 +95,8 @@
                             <td>{{se.2}}</td>
                             <td>{{se.3}}</td>
                             <td>
-                                <button class="crudbtn"><i class="fas fa-pen"></i></button>
-                                <button class="crudbtn"><i class="fas fa-trash-alt"></i></button>
+                                <button class="crudbtn"><a href="edit/{{se.0}}"><i class="fas fa-pen"></i></a></button>
+                                <button class="crudbtn"><a href="delete/{{se.0}}"><i class="fas fa-trash-alt"></i></a></button>
                             </td>
                         </tr>                        
                         {% endfor %}
@@ -98,7 +105,7 @@
                 <button type="button" onclick="document.getElementById('agregar').style.display='block'" class="addbtn"
                     style="width: 20%; margin-top:5%">Agregar</button>
                 <div id="agregar" class="modal">
-                    <form class="modal-content animate" method="post" style="width: 65%; height:auto; margin-top:8%;">
+                    <form action="/postsensores" class="modal-content animate" method="POST" style="width: 65%; height:auto; margin-top:8%;">
                         <span onclick="document.getElementById('agregar').style.display='none'" class="clo">&times;</span>
                         <h3 style="text-align: center; font-size:30px; margin-top:1%">Agregar Sensor</h3>
                         <table class="mytableAS">
@@ -111,17 +118,13 @@
                             <td style="width: 45%; border:none; padding-left:10px; text-align:center">
                                     <label for="name"><b>Nombre</b></label>
                                     <input type="add" placeholder="Nombre del sensor" name="name" required><br>
-                                    <label for="pin" ><b>No. Pin</b></label>
-                                    <input type="number" placeholder="# Pin" name="pin" min="0" max="26" required><br>
                                     <label for="tipo"><b>Tipo de Pin</b></label>
-                                    <input type="text" style="width: 90%;" placeholder="Interno o Externo" required
-                                        pattern="Interno|Externo|interno|externo|INTERNO|EXTERNO" name="name" id="intext">
-                                    <button type="submit" class="addbtn" onclick="location.href='#'" style="margin-top: 8%; width:40%">Confirmar</button>
+                                    <input type="number" placeholder="Interno (0) - Externo (1)" name="tipo" min="0" max="1" required><br>
+                                    <label for="pin" ><b>No. Pin</b></label>
+                                    <input type="number" placeholder="# Pin" name="pin" min="0" max="26" required>
+                                    <button type="submit" class="addbtn" style="margin-top: 8%; width:40%">Confirmar</button>
                             </td>
                         </table>
-                        {# <div class="container" style="background-color:#f1f1f1">   
-                            <button type="button" class="addbtn" onclick="location.href='sensores'" style="margin-top: 0%; width:auto">Confirmar</button>
-                        </div> #}
                     </form>
                 </div>
     </section>
@@ -135,12 +138,6 @@
             if (event.target == modal) {
                 modal.style.display = "none";
             }
-        }
-    </script>
-    <script>
-        var input = document.getElementById('intext');
-        input.oninvalid = function(event) {
-            event.target.setCustomValidity('Introduzca si es pin Interno o Externo');
         }
     </script>
     <script>

@@ -1,6 +1,6 @@
 #from clases.sensor import dth22sensor
 from BClima import app, mydb
-from flask import jsonify, request
+from flask import jsonify, request, render_template, session ,redirect, url_for, flash
 import random
 import mysql.connector
 
@@ -15,7 +15,7 @@ def postsensor():
     data = request.form.to_dict()
     nombre = data['name'] 
     pin = data['pin']
-    tipo = data['type']
+    tipo = data['tipo']
     print(data)
     try:
         cnx = mysql.connector.connect(**mydb)
@@ -29,7 +29,8 @@ def postsensor():
                 query = "INSERT INTO sensor (Nombre, Pin, Tipo) VALUES ('%s', %s, %s);"%(nombre, pin, tipo)
                 cur.execute(query)
                 cnx.commit()
-                return jsonify(True)
+                flash("Sensor agregado","success")
+                return redirect(url_for('sensores'))
             else:
                 return jsonify({'msg':'ERROR:Ya existe este sensor registrado'})
         except Exception as e:
@@ -83,25 +84,41 @@ def putsensor():
     except Exception as e:
         return jsonify({'msg':str(e)})
 
-@app.route('/deletesensores')
-def deleteensor():
-    data = request.form.to_dict()
-    index = data['id']
-    try:
+@app.route("/edit/<id>")
+def editSensor(id):
+    cnx = mysql.connector.connect(**mydb)
+    cur = cnx.cursor()
+    cur.execute("SELECT * FROM sensor WHERE Id={0}".format(id))
+    data = cur.fetchall()
+    return render_template('editsensor.html', sens = data[0])
+    
+@app.route("/updateSensor/<id>", methods=['POST'])
+def updateSensor(id):
+    if (request.method == 'POST'):
+        name = request.form['name']
+        tipo = request.form['tipo']
+        pin = request.form['pin']
         cnx = mysql.connector.connect(**mydb)
         cur = cnx.cursor()
-        try:
-            query = "DELETE sensor WHERE Id = %d;"%(index)
-            cur.execute(query)
-            cnx.commit()
-            return jsonify([x for x in cur][0][0])
-        except Exception as e:
-            return jsonify({'msg':'ERROR:'+str(e)})
-        finally:
-            cur.close()
-            cnx.close()
-    except Exception as e:
-        return jsonify({'msg':str(e)})
+        cur.execute("""
+        UPDATE sensor
+        SET Nombre = %s,
+        Tipo = %s,
+        Pin = %s
+        WHERE Id = %s
+        """, (name,tipo,pin,id))
+        cnx.commit()
+        flash("Sensor actualizado","warning")
+        return redirect(url_for('sensores'))
+       
+@app.route("/delete/<string:id>")
+def deleteSensor(id):
+    cnx = mysql.connector.connect(**mydb)
+    cur = cnx.cursor()
+    cur.execute("DELETE FROM sensor WHERE Id={0}".format(id))
+    cnx.commit()
+    flash("Sensor eliminado","danger")
+    return redirect(url_for('sensores'))
 
 @app.route('/getexemplotemphum')
 def getexample():

@@ -416,6 +416,10 @@ span.psw {
 	width: fit-content;
 }
 
+.crudbtn a {
+	color: #67b436;
+}
+
 .nextbtn {
 	background-color: #67b436;
 	color: white;
@@ -557,6 +561,27 @@ td {
 }
 
 #idMensajeError {
+	padding: 10px;
+	text-align: center;
+	background-color: #f44336; /* Red */
+	color: white;
+}
+
+.success {
+	padding: 10px;
+	text-align: center;
+	background-color: #67b436; /* Red */
+	color: white;
+}
+
+.warning {
+	padding: 10px;
+	text-align: center;
+	background-color: #67b436; /* Red */
+	color: white;
+}
+
+.danger {
 	padding: 10px;
 	text-align: center;
 	background-color: #f44336; /* Red */

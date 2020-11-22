@@ -1,5 +1,5 @@
 from BClima import app, mydb
-from flask import jsonify, request, render_template, session
+from flask import jsonify, request, render_template, session ,redirect, url_for
 import mysql.connector
 import bcrypt
 
