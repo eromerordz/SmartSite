@@ -44,48 +44,6 @@ def postsensor():
     except Exception as e:
         return jsonify({'msg':str(e)})
 
-# @app.route("/getsensores", methods=["POST","GET"])
-# def getallsensores():
-#     try:
-#         cnx = mysql.connector.connect(**mydb)
-#         cur = cnx.cursor(buffered=True)
-#         arr = []
-#         nombres = ["Id","Nombre", "Pin", "Tipo"]
-#         try:
-#             cur.execute("SELECT * FROM sensor;")
-#             result = [dict(zip(nombres,x)) for x in cur]
-#             return jsonify(result)
-#         except Exception as e:
-#             return jsonify({'msg':'ERROR:'+str(e)})
-#         finally:
-#             cur.close()
-#             cnx.close()
-#     except Exception as e:
-#         return jsonify({'msg':str(e)})
-
-# @app.route('/putsensores')
-# def putsensor():
-#     data = request.form.to_dict()
-#     index = data['id']
-#     nombre = data['name'] 
-#     pin = data['pin']
-#     tipo = data['type']
-#     try:
-#         cnx = mysql.connector.connect(**mydb)
-#         cur = cnx.cursor()
-#         try:
-#             query = "UPDATE sensor SET Nombre ='%s', Pin = %d, Tipo = %d WHERE Id = %d;"%(nombre, tipo, pin, index)
-#             cur.execute(query)
-#             cnx.commit()
-#             return jsonify([x for x in cur][0][0])
-#         except Exception as e:
-#             return jsonify({'msg':'ERROR:'+str(e)})
-#         finally:
-#             cur.close()
-#             cnx.close()
-#     except Exception as e:
-#         return jsonify({'msg':str(e)})
-
 #EDITAR SENSOR
 @app.route("/edit/<id>")
 def editSensor(id):
@@ -101,18 +59,36 @@ def updateSensor(id):
         name = request.form['name']
         tipo = request.form['tipo']
         pin = request.form['pin']
-        cnx = mysql.connector.connect(**mydb)
-        cur = cnx.cursor()
-        cur.execute("""
-        UPDATE sensor
-        SET Nombre = %s,
-        Tipo = %s,
-        Pin = %s
-        WHERE Id = %s
-        """, (name,tipo,pin,id))
-        cnx.commit()
-        flash("Sensor actualizado","warning")
-        return redirect(url_for('sensores'))
+        try:
+            cnx = mysql.connector.connect(**mydb)
+            cur = cnx.cursor()
+            cur1 = cnx.cursor(buffered=True)
+            try:
+                query1 = "SELECT COUNT('x') FROM sensor WHERE pin = '%s';"%(pin)
+                cur1.execute(query1)
+                result = [x for x in cur1][0][0]
+                if result < 1:
+                    cur.execute("""
+                    UPDATE sensor
+                    SET Nombre = %s,
+                    Tipo = %s,
+                    Pin = %s
+                    WHERE Id = %s
+                    """, (name,tipo,pin,id))
+                    cnx.commit()
+                    flash("Sensor actualizado","warning")
+                    return redirect(url_for('sensores'))
+                else:
+                    flash("#Pin en uso","danger")
+                    return redirect(url_for('sensores'))
+            except Exception as e:
+                return jsonify({'msg':'ERROR:'+str(e)})
+            finally:
+                cur1.close()
+                cur.close()
+                cnx.close()
+        except Exception as e:
+            return jsonify({'msg':str(e)})
 
 #ELIMINAR SENSOR    
 @app.route("/delete/<string:id>")
