@@ -8,6 +8,7 @@
   <script src="https://kit.fontawesome.com/b70cada82c.js" crossorigin="anonymous"></script>
   <title>Recuperar Contraseña - SmartSite</title>
   <link rel="shortcut icon" href="static/src/favicon.ico">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}">
 </head>
 
 <body>
@@ -21,19 +22,28 @@
 
   <section id="bdy" style="margin-top: auto; width:60%">
     <h2 style="text-align: center; font-size: 2em; margin-bottom:5%">Recuperar Contraseña</h2>
-    <form class="modal-contentL">
+    {% with messages = get_flashed_messages (with_categories = True) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="{{category}}">
+          {{message}}
+          <span class="closebtnlogin" onclick="this.parentElement.style.display='none';">&times;</span>
+        </div>
+      {% endfor %}
+    {% endif %}
+    {% endwith %}  
+    <form class="modal-contentL" action="/recuperarpswH" method="post">
       <form>
         <div class="container" style="color: black;">
           <div class="input-container">
-            <input type="text" name="email" required>
+            <input type="text" name="correo" id="e" onInput="validarInput()" required>
             <label for="correo"><b><i class="fas fa-at"></i>Ingresar Correo</b></label>
           </div>
           <div style="text-align: center;">
-            <button class="nextbtn" onclick="location.href='recuperarpsw'"><i class="fas fa-arrow-right"></i></button>
+            <button class="nextbtn" id="bt" onclick="location.href='recuperarpsw'" disabled><i class="fas fa-arrow-right"></i></button>
           </div>
         </div>
       </form>
-    
     </form>
   </section>
 
@@ -41,6 +51,12 @@
     <p><i class="fas fa-code"></i>Fábrica de Software</p>
   </footer>
 
+  <script>
+    function validarInput() {
+      document.getElementById("bt").disabled = !document.getElementById("e").value.length;
+    }
+  </script>
+  
 </body>
 
 </html>

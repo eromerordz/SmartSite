@@ -111,6 +111,42 @@ def putchangepassword(id):
             flash("Contraseña no coincide","danger")
             return redirect(url_for('cambiar'))
 
+
+@app.route('/recuperarpsw/<idC>', methods=["POST"])
+def recuperarpsw(idC):
+    if 'nombre' in session:
+        return redirect(url_for('/'))
+    elif 'nombreC' in session:
+        session.clear()
+        if (request.method == 'POST'):
+            data = request.form.to_dict()
+            passw = request.form['psw']
+            passw2 = request.form['psw2']
+            if (passw == passw2):
+                try:
+                    cnx = mysql.connector.connect(**mydb)
+                    cur = cnx.cursor()
+                    try:
+                        cur.execute("UPDATE Users SET password_b= %s WHERE Users_Id = %s;",(passw,idC))
+                        cnx.commit()
+                        session.clear()
+                        flash("Contaseña actualizada","success")
+                        return redirect(url_for('perfil'))
+                    except Exception as e:
+                        return jsonify({'msg':'ERROR:'+str(e)})
+                    finally:
+                        cur.close()
+                        cnx.close()
+                except Exception as e:
+                    return jsonify({'msg':str(e)})
+            else:
+                flash("Contraseña no coincide","danger")
+                # return render_template('recuperarpsw.html') 
+                return redirect(url_for('p'))
+    else:
+        session.clear()
+        return render_template('recuperarpswH.html')
+
 # @app.route("/putRegistro", methods=["PUT"])
 # def putregistr():
 #     data = request.form.to_dict()

@@ -20,9 +20,6 @@ conn = mysql.connect()
 
 cursor = conn.cursor(pymysql.cursors.DictCursor)
 
-#semilla
-# semilla = bcrypt.gensalt()
-
 @app.route("/")
 
 def main():
@@ -74,13 +71,6 @@ def sensores():
     else:
         return render_template('login.html')
 
-# @app.route('/eS')
-# def eSen():
-#     if 'nombre' in session:
-#         return render_template('editsensor.html')
-#     else:
-#         return render_template('login.html')
-
 @app.route('/perfil')
 def perfil():
     if 'nombre' in session:
@@ -95,20 +85,12 @@ def cambiar():
     else:
         return render_template('login.html')
 
-@app.route('/recuperarpsw')
-def recuperarpsw():
-    if 'nombre' in session:
-        return salir()
-    else:
+@app.route('/p')
+def p():
+    if 'nombreC' in session:
         return render_template('recuperarpsw.html')
-    
-@app.route('/recuperarpswH')
-def recuperarpswH():
-    if 'nombre' in session:
-        return salir()
     else:
         return render_template('recuperarpswH.html')
-
 
 @app.route('/entrar',methods=['GET','POST'])
 def entrar():
@@ -120,26 +102,11 @@ def entrar():
     else:
         correo = request.form["nmCorreo"]
         passwordB = request.form["nmPassword"]
-        # password_encode = password_encode("utf-8")
         cursor = mysql.get_db().cursor()
-        # cur = mysql.connection.cursor()
-
-        # sQuery = "SELECT Users_Name, Users_Correo, password_b FROM users WHERE Users_Correo = %s AND password_b = %s"
-        # sQuery1 = "SELECT Users_Name, Users_Correo, password_b FROM users WHERE password_b = %s"
-        # cursor.execute(sQuery,[correo,passwordB])
-
         cursor.execute("SELECT * FROM users WHERE Users_Correo = %s AND password_b = %s",(correo,passwordB))
-        # cursor.execute(sQuery1,[passwordB])
-
         usuario = cursor.fetchone()
-
         cursor.close()
-
         if (usuario != None):
-            # password_encriptado_encode = usuario[2].encode()
-            # if (bcrypt.checkpw(password_encode,password_encriptado_encode)):
-            # fsw = passwordB
-            # if (passwordB == fsw):
             session['id']= usuario[0]
             session['nombre']= usuario[1]
             session['correo']= usuario[2]
@@ -149,27 +116,35 @@ def entrar():
             flash("Usuario Incorrecto","danger")
             return render_template('login.html')
 
-# @app.route("/putRegistro", methods=['PUT'])
-# def putregistr():
-#     data = request.form.to_dict()
-#     email = data['email'] 
-#     name = data['name']
-#     id_us = int(data['id'])
+@app.route('/rpC')
+def rpC():
+    if 'nombre' in session:
+        return redirect(url_for('enter'))
+    else:
+        return render_template('recuperarpswH.html')   
 
-#     try:
-#         cursor = mysql.get_db().cursor()
-#         try:
-#             cursor.execute("UPDATE Users SET Users_Name='%s', Users_Correo='%s' WHERE Users_Id = %d;"%(name,email,id_us))
-#             # query = "UPDATE Users SET Users_Name='%s', Users_Correo='%s' WHERE Users_Id = '%s';"%(name,email,id_us)
-#             # cur.execute(query)
-#             return jsonify({'msg':str(data)})
-#         except Exception as e:
-#             return jsonify({'msg':'ERROR:'+str(e)})
-#         finally:
-#             cursor.close()
-#             # cnx.close()
-#     except Exception as e:
-#         return jsonify({'msg':str(e)})
+@app.route('/recuperarpswH', methods=['GET','POST'])
+def recuperarpswH():
+    if (request.method=='POST'):
+        if 'nombre' in session:
+            return salir()           
+        else:
+            correor = request.form["correo"]
+            cursor = mysql.get_db().cursor()
+            cursor.execute("SELECT * FROM users WHERE Users_Correo = %s",(correor))
+            usuario2 = cursor.fetchone()
+            cursor.close()
+            if (usuario2 != None):
+                session['idC']= usuario2[0]
+                session['nombreC']= usuario2[1]
+                session['correoC']= usuario2[2]
+                session['paswC']= usuario2[3].decode("utf-8")
+                return render_template('recuperarpsw.html')
+            else:
+                flash("Correo Incorrecto","danger")
+                return render_template('recuperarpswH.html')                
+    else:
+        return salir() 
 
 @app.route("/salir")
 def salir():

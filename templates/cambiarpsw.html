@@ -60,14 +60,14 @@
                 <td><img src="static/src/oso.png"  style="width: 40%; float:right"></td>
                 <td>
                     <h2 style="display: inline-block; width:100px; text-align:center">Contraseña</h2>
-                    <input type="password" style="width: 60%;" id="pasw" name="contra">
+                    <input type="password" style="width: 60%;" id="pasw" name="contra" oninput="validarInput()">
                     <i class="button fa fa-eye-slash icon" onclick="mostrarContrasena()"></i><br>
                     <h2 style="display: inline-block; width:100px; text-align:center">Confirmar</h2>
                     <input type="password" style="width: 60%;" id="npasw" name="contra2">
                     <i class="button fa fa-eye-slash icon" onclick="mostrarContrasena2()"></i><br>
                 </td>
             </table>
-            <button class="submit addbtn" style="margin-top: 5%; width: 15%" id="up">Actualizar</button>  
+            <button class="submit addbtn" style="margin-top: 5%; width: 15%" id="up" disabled>Actualizar</button>  
             <i class="backbtn fas fa-arrow-left" style="float:left; margin:0%; width:5%; margin-top:-4%" onclick="location.href='perfil'"></i>                           
         </form>
     </section>
@@ -76,6 +76,11 @@
         <p><i class="fas fa-code"></i>Fábrica de Software</p>
     </footer>
 
+    <script>
+        function validarInput() {
+          document.getElementById("up").disabled = !document.getElementById("pasw").value.length;
+        }
+    </script>
     <script>
         var modal = document.getElementById('close');    
         window.onclick = function (event) {
@@ -90,7 +95,6 @@
     <script>
         $('#dtTemperaturas').DataTable();
     </script>
-
     <script>
         function mostrarContrasena(){
             var tipo = document.getElementById("pasw");

@@ -8,6 +8,7 @@
   <script src="https://kit.fontawesome.com/b70cada82c.js" crossorigin="anonymous"></script>
   <title>Recuperar Contraseña - SmartSite</title>
   <link rel="shortcut icon" href="static/src/favicon.ico">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}">
 </head>
 
 <body>
@@ -21,20 +22,30 @@
 
   <section id="bdy" style="margin-top: auto; width:60%">
         <h2 style="text-align: center; font-size: 2em; margin-bottom:5%">Recuperar Contraseña</h2>
-        <form lass="modal-contentL">
+        {% with messages = get_flashed_messages (with_categories = True) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="{{category}}">
+              {{message}}
+              <span class="closebtnlogin" onclick="this.parentElement.style.display='none';">&times;</span>
+            </div>
+          {% endfor %}
+        {% endif %}
+        {% endwith %} 
+        <form action="/recuperarpsw/{{session['idC']}}" method="POST" class="modal-contentL">
           <div class="container" style="color: black;">
             <div class="input-container">
-              <input type="password" name="psw"  style="width: 95%;" id="pasw" required>
+              <input type="password" name="psw"  style="width: 95%;" id="pasw" oninput="validarInput()" required>
               <label for="psw"><b><i class="fas fa-key"></i>Nueva Contraseña</b></label>
               <span class="fa fa-eye-slash icon" onclick="mostrarContrasena()"></span>
             </div>
             <div class="input-container">
-              <input type="password" name="psw" style="width: 95%;" id="passw" required>
+              <input type="password" name="psw2" style="width: 95%;" id="passw" required>
               <label for="psw"><b><i class="fas fa-key"></i>Confirmar Contraseña</b></label>
               <span class="fa fa-eye-slash icon" onclick="mostrarContrasena2()"></span>
             </div>
             <div style="text-align: center;">
-              <button class="rightbtn" onclick="location.href='/'"><i class="fas fa-check"></i></button>
+              <button class="rightbtn" id="up" disabled><i class="fas fa-check"></i></button>
             </div>
           </div>
         </form>
@@ -44,6 +55,11 @@
     <p><i class="fas fa-code"></i>Fábrica de Software</p>
   </footer>
 
+  <script>
+    function validarInput() {
+      document.getElementById("up").disabled = !document.getElementById("pasw").value.length;
+    }
+  </script>
   <script>
     function mostrarContrasena(){
         var tipo = document.getElementById("pasw");
