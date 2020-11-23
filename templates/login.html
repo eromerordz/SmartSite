@@ -24,16 +24,16 @@
 			<div class="imgcontainer">
 				<img src="static/src/oso.png" class="avatar">
 			</div>
-			{%with messages = get_flashed_messages(with_categories=true)%}
-				{%if messages %}
-					{%for category, message in messages%}
-						<div class="alert {{category}}" id="idMensajeError">
-							{{message}}
-							<span class="closebtnlogin" onclick="this.parentElement.style.display='none';">&times;</span>
-						</div>
-					{%endfor%}
-				{%endif%}
-			{%endwith%}
+			{% with messages = get_flashed_messages (with_categories = True) %}
+			{% if messages %}
+				{% for category, message in messages %}
+					<div class="{{category}}">
+						{{message}}
+						<span class="closebtnlogin" onclick="this.parentElement.style.display='none';">&times;</span>
+					</div>
+				{% endfor %}
+			{% endif %}
+			{% endwith %}  
 			<div class="container" style="color: black;">
 				<div class="input-container">
 					<input type="text" name="nmCorreo" required="">

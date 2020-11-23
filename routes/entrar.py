@@ -146,7 +146,7 @@ def entrar():
             session['pasw']= usuario[3].decode("utf-8")
             return redirect(url_for('principal'))
         else:
-            flash("Usuario Incorrecto","alert-warning")
+            flash("Usuario Incorrecto","danger")
             return render_template('login.html')
 
 # @app.route("/putRegistro", methods=['PUT'])
